@@ -1,0 +1,61 @@
+
+1. "ProtoFont" eine WebFont Pairing WebApp
+Ein Single Page Application Tool wo mann seine lieblings Webfonts (Frei und OpenSource) testen und vergleichen kann um die besten Pairings rauszufinden idealerweise mit Bilder und Farben. Alternativ könnte ein paar von mir gestaltete basis Grafiken geladen werden.
+
+Darstellungbeispiel
+Font 1 Auswahl per dropdown aus externer JSON Datei: Headline
+Font 2 Auswahl aus Dropdown : Bodytext
+Hintergrund Farbe oder Grafik wechseln
+ein "Random" Button nur für Font 1 oder Font 2 oder Hintergrund oder alles ("I feel lucky" Prinzip wie bei Google)
+
+Komposition speichern Button
+
+Achtung: keine Kopie von das Google Webfonts Dienst sondern ein richtiges Tool der die Auswahl von Webfonts erleichtern soll.
+Es soll auch spaß machen!
+Es geht darum die Fonts auszuwählen und in einem Kompositions-"Prototyp" zu visualisieren
+
+UI: minimalistisch, schick und elegant, mehrere Darstellungsoptionen: liste, raster system (boostrap z.B),
+Optionen: Schrift-Farbe, Schriftschnitte, Schriftgröße (per slider / input z.B), Zeilenabstand, Hintergrundfarbe / oder Bild  (ähnlich wie Desktop Font Apps: FontBook (Apple), FontExplorer usw.)
+Quelle: Google Webfonts und andere OpenSource Dienste
+
+Javascript:
+- Schleifen
+
+
+Inspirationen:
+http://font-combinator.com/
+https://fontpair.co/
+https://fontjoy.com/ (sehr erweitert)
+https://fontsinuse.com/
+https://www.youworkforthem.com
+
+Mögliche Features:
+Sehr gewünscht:
+- Zufallsgenerator (spielerisch)
+- ein Font-tester mit canvas zusammenstellen
+- Kompisitionen als PDF, PNG exportieren
+- Eigenel Bilder per Ajax laden
+Optional: 
+- eigene Webfonts hochladen und einspeichern (css @font-face musste dynamisch generiert werden sowie Pfad zur webfont Dateien)
+- die Kombis in Listen speichern und ausdrucken (PDFs) mit komplettes Aplhabet und Glyphen (per for Schleifen z.B)
+- in localStorage die Listen speichern damit diese auch Offline verfügbar bleiben
+
+Bonus 1: wenn genug Zeit: die WebApp responsive optimieren
+Bonus 2: später die WebApp in ReactJS konvertieren (ui) und warum nicht ReactNative als richtige Mobile App
+
+2. "DreamScribe"
+Ich habe die letzen 15 Jahre fast täglich meine Träunme aufgeschrieben und habe ein paar schon als Textdatei gespeichert.
+ein Traum manager, träume werden als Eintrag aus einer externe json datei ausgelesen, analysiert und visualisiert.
+
+Analyse: Daten Visualisierung mit D3.js
+zB. Datum, Orte, Personen, Albtraum / Glücklicher Traum / Hybrid.
+
+3. Glossar Web APP / Persönliches Vokabel Datenbank:
+eine Simple UI zu verfügung stellen um neue Vokabel Einträge zu speichern
+meist verwendetete Vokabel als Eintrag speichern und suchbar machen
+Bonus: "Vokalbeltrainer", Quiz Funktion
+
+4. Webfolio  
+Kopie meiner Web Portfolio Seite komplett in Javascript nachbauen (Wordpress REST API: alle Inhalte sind per JSON verfügbar)
+https://damienpierre.com/wp-json/
+https://damienpierre.com/wp-json/wp/v2

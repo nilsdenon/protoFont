@@ -1,0 +1,16 @@
+{
+  "name": "protofont",
+  "version": "1.0.0",
+  "description": "Font Pairing Tool",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kalumbox@bitbucket.org/kalumbox/protofont.git"
+  },
+  "author": "Damien Pierre",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kalumbox/protofont#readme"
+}
