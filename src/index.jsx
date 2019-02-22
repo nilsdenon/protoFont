@@ -1,1 +1,0 @@
-let baseURL = process.env.baseURL;

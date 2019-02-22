@@ -1,16 +1,86 @@
 {
-  "name": "protofont",
-  "version": "1.0.0",
-  "description": "Font Pairing Tool",
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "start"
+  "name": "webpack-starter-kit",
+  "version": "1.1.3",
+  "description": "Webpack boilerplate config",
+  "keywords": [
+    "webpack",
+    "front-end build"
+  ],
+  "homepage": "https://github.com/ADCI/webpack-starter-kit",
+  "bugs": {
+    "url": "https://github.com/ADCI/webpack-starter-kit/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://kalumbox@bitbucket.org/kalumbox/protofont.git"
+    "url": "https://github.com/ADCI/webpack-starter-kit"
   },
-  "author": "Damien Pierre",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/kalumbox/protofont#readme"
+  "main": "webpack.config.prod.babel.js",
+  "engines": {
+    "node": ">=6.9.0"
+  },
+  "private": true,
+  "scripts": {
+    "sprites": "npm-run-all --parallel sprites:*",
+    "sprites:png": "spritesmith --rc .spritesmith.js",
+    "clean": "npm-run-all clean:*",
+    "clean:dist": "del-cli dist",
+    "prestart": "npm-run-all --parallel clean sprites",
+    "start": "cross-env STYLES=scss webpack --progress --env.dev --config webpack.config.dev.babel.js",
+    "start:webpack-server": "cross-env STYLES=scss webpack-dev-server --open --env.dev",
+    "prebuild": "npm-run-all --parallel clean sprites",
+    "prebuild:prod": "npm-run-all --parallel clean sprites",
+    "build": "cross-env STYLES=scss webpack --progress --env.build --config webpack.config.dev.babel.js",
+    "build:prod": "cross-env STYLES=scss webpack --env.prod --config webpack.config.prod.babel.js",
+    "debug": "cross-env STYLES=scss webpack -d --display-error-details --env.dev",
+    "lint:autofix": "stylelint src/scss/**/*.scss --fix && eslint src/js --fix",
+    "postinstall": "del-cli node_modules/**/*.info"
+  },
+  "dependencies": {
+    "normalize.css": "^7.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.0.1",
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.0.0",
+    "babel-minify-webpack-plugin": "^0.2.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-runtime": "^6.22.0",
+    "browser-sync": "^2.18.8",
+    "browser-sync-webpack-plugin": "^1.1.4",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.0",
+    "del-cli": "^1.0.0",
+    "eslint": "^4.1.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "exports-loader": "^0.6.3",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^1.1.6",
+    "html-loader": "^0.5.0",
+    "html-webpack-plugin": "^2.28.0",
+    "image-webpack-loader": "^4.0.0",
+    "node-sass": "^4.5.2",
+    "npm-run-all": "^4.0.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.5",
+    "postcss-reporter": "^5.0.0",
+    "pug-html-loader": "^1.1.0",
+    "sass-loader": "^6.0.0",
+    "spritesmith-cli": "^1.1.2",
+    "style-loader": "^0.20.1",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^18.0.0",
+    "stylelint-scss": "^2.0.1",
+    "stylelint-webpack-plugin": "^0.10.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.3.0"
+  }
 }

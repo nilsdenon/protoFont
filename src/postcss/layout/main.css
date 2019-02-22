@@ -1,0 +1,33 @@
+:root {
+  --container-gutter: 15px;
+  --container-width: calc(1200px + var(--container-gutter) * 2);
+  --col-gutter: var(--container-gutter);
+}
+
+.clearfix {
+  @apply --clearfix;
+}
+
+.container {
+  @apply --clearfix;
+
+  display: block;
+  width: auto;
+  max-width: var(--container-width);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: block;
+  margin-left: -var(--col-gutter);
+  margin-right: -var(--col-gutter);
+}
+
+.col {
+  display: block;
+  padding-right: var(--col-gutter);
+  padding-left: var(--col-gutter);
+}

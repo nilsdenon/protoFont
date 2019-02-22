@@ -1,0 +1,18 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "> 0.5%",
+          "not ie <= 10"
+        ]
+      }
+    }]
+  ],
+  "retainLines": true,
+  "ignore": [
+    "src/js/vendor",
+    "/node_modules/"
+  ]
+}
