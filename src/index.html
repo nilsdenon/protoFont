@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+</head>
+
+<body>
+    <div>Hello, world!</div>
+
+    <div class="fontblock">
+        <section class="fontblock__body">
+            <div class="fontblock__headline">
+                <div class="primary-font"></div>
+                <span class="hud hud--fontdetails hidden">
+                    <dl>
+                        <dt>Font Name</dt>
+                        <dd>Font Size</dd>
+                        <dd>Letter-Spacing</dd>
+                        <dd>Line-Height</dd>
+                    </dl>
+                </span>
+            </div>
+            <div class="fontblock__bodytext">
+                <div class="secondary-font"></div>
+                <span class="hud hud--fontdetails hidden">
+                    <dl>
+                        <dt>Font Name</dt>
+                        <dd>Font Size</dd>
+                        <dd>Letter-Spacing</dd>
+                        <dd>Line-Height</dd>
+                    </dl>
+                </span>
+            </div>
+        </section>
+        <aside class="fontblock__menu">
+            <nav class="fontblock__nav">
+                <form action="">
+                    <legend>Headline</legend>
+                    <span class="custom-select">
+                        <select name="primary-font-select" id="">
+                            <option value=""></option>
+                        </select>
+                    </span>
+                    <input name="primary-font-size"type="range" />
+                </form>
+            </nav>
+        </aside>
+    </div>
+
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+
+</body>
+
+</html>
