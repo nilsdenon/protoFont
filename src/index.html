@@ -7,9 +7,14 @@
 
 <body>
     <div class="fontblock">
-        <section class="fontblock__body">
+        <section class="fontblock__body col-8">
             <div class="fontblock__headline">
-                <div class="font-primary"></div>
+                <div class="font-primary">
+                    <!---<textarea id="primary-font" class="custom-textarea" name="" onchange="autoHeight();" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>-->
+                    <div id="primary-font" class="font font-primary fake-textarea">
+                            Lorem ipsum dolor sit amet
+                    </div>
+                </div>
                 <span class="hud hud--fontdetails hidden">
                     <dl>
                         <dt>Font Name</dt>
@@ -31,21 +36,80 @@
                 </span>
             </div>
         </section>
-        <aside class="fontblock__menu">
+        <aside class="fontblock__menu col-4">
             <nav class="fontblock__nav">
                 <form class="fontblock__form" action="">
                     <legend>Headline</legend>
-                    <span class="custom-select">
-                        <select name="primary-font-select" id="">
-                            <option value=""></option>
+                    <div class="form-group">
+                        <textarea class="custom-textarea" name="font-primary" onchange="updateText('primary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Font-family</label>
+                        <select class="form-control" name="primary-font-select" id="">
+                            <option value="lato">Lato</option>
+                            <optgroup label="font weight">
+                                <option value="">regular</option>
+                                <option value="">bold</option>
+                            </optgroup>
                         </select>
-                    </span>
-                    <input name="primary-font-size"type="range" />
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="form-label" for="Font-size">Font-size</label>
+                        <input onchange="setFontSize('primary-font', this.value);" on id="fontSizePrimary" class="form-control" name="primary-font-size" type="range" value="16" min="6" max="280" step="2" />
+                    </div>
+                   
                 </form>
             </nav>
         </aside>
     </div>
+    <script>
+        "use strict";
+       
+        function updateText(el, text) {
+           var target = document.getElementById(el);
+           target.innerHTML = text;
+        }
+         // Textarea Auto Height: wir wollen keine hässliche Scrollbalken anzeigen und trotzdem die Möglichkeit haben Text mehrzeilig einzutragen
+        //sautoHeight();
+        function autoHeight() {
+            var ct = document.getElementsByClassName('custom-textarea');
+            for (var i = 0; i < ct.length; i++) {
+            ct[i].setAttribute('style', 'height:' + (ct[i].scrollHeight) + 'px;');
+            ct[i].addEventListener("input", onInput, false);
+            }
+        }
+    
+        function onInput() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+        }
+        function setFontSize(targetElement, size) {
+            var target = document.getElementById(targetElement);
+            target.style.fontSize = size + "px";
+        }
+      
+        // Webfonts aus externer JSON Datei auslesen
+        var gwf = "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
 
+        var request = new XMLHttpRequest();
+
+        request.onload = function() {
+            var jsonDoc = request.responseText;
+            var jsonObject = JSON.parse(jsonDoc);
+            var sel = document.createElement("select");
+            sel.setAttribute("name", "primaryFontSelector");
+            // all items = all webfonts
+            var fonts = jsonObject.items;
+            for(var i=0; i<items.length; i++) {
+                console.log(items[i]);
+            }
+        }
+        request.open("GET", gwf, true);
+        request.setRequestHeader("Accept", "application/json");
+        request.send();  
+        console.log(gwf);
+    </script>
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 
 </body>

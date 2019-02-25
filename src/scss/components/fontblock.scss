@@ -13,14 +13,30 @@
             font-weight: 300;
             font-size: 1.25rem;
         }
+        label {
+            font-size: .875rem;
+        }
     }
 }
 
 .font {
     &-primary {
-
+        // default font size
+        font-size: 1rem;
     }
     &-secondary {
 
+    }
+}
+.custom-textarea {
+    font-size: .875rem;
+    outline: 0;
+    border: 1px solid  $c-light-gray;
+    padding: 10px;
+    resize: none;
+    width: 100%;
+    overflow-y: hidden;
+    &:focus {
+        outline: none;
     }
 }
