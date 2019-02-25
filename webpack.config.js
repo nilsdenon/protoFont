@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+
 module.exports = {
   entry: { main: './src/index.js' },
   output: {
@@ -54,6 +56,11 @@ module.exports = {
       configFile: './stylelint.config.js',
       files: './src/scss/*.scss',
       syntax: 'scss'
+    }),
+    new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3000,
+        proxy: 'http://localhost:8080/'
     })
   ]
 };
