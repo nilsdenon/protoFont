@@ -96,20 +96,49 @@
             // all items = all webfonts
             var fonts = jsonObject.items;
             
+            // Erste Schleifte = alle Schriftfamilien holen
             for(var i=0; i<fonts.length; i++) {
-                //console.log(fonts[i]);
-                var opt = document.createElement("option");
                 var families = fonts[i].family;
+                var weights = fonts[i].variants;
+
+                var optGrp = document.createElement("optgroup");
+                optGrp.setAttribute("label", families);
+                var opt = document.createElement("option");
+               
                 var t = document.createTextNode(families);
+            
                 opt.appendChild(t);
                 opt.setAttribute("value", families);
-                var weights = fonts[i].variants;
-                sel.appendChild(opt);
-                for(var j=0; j>families.length; j++) {
-                    //console.log(families[j]);
-                   
+                optGrp.appendChild(opt);
+                
+               console.log(weights);
+                // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
+                for(var j=0; j<weights.length; j++) {
+                    // Schriftschnitten in CSS Kompatible Werte Konvertieren z.B. "regular" = 400, light = 300
+                    var weightValue, fontStyle;
+                    switch(weights) {
+                        case "regular":
+                            weightValue = 400;
+                            break;
+                        case "100light":
+                            weightValue = 100;
+                            fontStyle = "italic";
+                            break;
+                        default:
+                            weightValue = 400;    
+                    }
+                    console.log(weights);
+                    opt = document.createElement("option");
+                    
+                    t = document.createTextNode((families + " " + weights[j]).toString());
+                    //t2 = document.createTextNode(weights[j]);
+                    opt.setAttribute("value", t);
+                    opt.appendChild(t);
+                    optGrp.appendChild(opt);
+                    //sconsole.log(t);
                 }
-              
+               
+                sel.appendChild(optGrp);
                // var families = jsonObject.items.family;
             }
          
@@ -120,13 +149,16 @@
         request.send();  
 
         // Schrift aus dem Select Aktualisieren
-        function updateFont(target) {
+        function updateFont(targetElement) {
+            var target = document.getElementById(targetElement);
             var selector = document.querySelector('#primary-font-select');
             var value = selector[selector.selectedIndex].value;
             // String muss in einführungszeichen ausgegeben werden
             var valueInQuotes =  "'" + value + "'";
-    
-            document.getElementById(target).style.fontFamily = valueInQuotes;
+            // Schrift Familie setzen
+            target.style.fontFamily = valueInQuotes;
+            // Font-weight / Schriftschnitte setzen
+        
         }
 
     </script>
