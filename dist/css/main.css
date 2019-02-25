@@ -391,36 +391,9 @@ template {
 [hidden] {
   display: none; }
 
-/* Sprites */
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home {
-  width: $icon-home-width;
-}
-
-The large array-like variables contain all information about a single icon
-$icon-home: x y offset_x offset_y width height total_width total_height image_path;
-*/
-/*
-The provided mixins are intended to be used with the array-like variables
-
-.icon-home {
-  @include sprite-width($icon-home);
-}
-
-.icon-email {
-  @include sprite($icon-email);
-}
-*/
-/* Setup */
 /* Colors */
 /* Fonts */
 /* Base variables */
-/* Media variables */
-/* Mixins */
-/* Mixins */
-/* Base styles */
 /* ==========================================================================
    Base styles
    ========================================================================== */
@@ -432,12 +405,14 @@ The provided mixins are intended to be used with the array-like variables
 
 /* stylelint-enable selector-max-universal */
 html {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
   color: #000;
   overflow-wrap: break-word;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 body {
   background: #fff; }
@@ -463,66 +438,5 @@ textarea {
 button,
 input[type="submit"] {
   cursor: pointer; }
-
-/* Layout */
-body {
-  font-family: 'Courier New', Courier, monospace; }
-
-.clearfix::after {
-  display: block;
-  content: "";
-  clear: both; }
-
-.container {
-  display: block;
-  width: auto;
-  max-width: calc(1200px + 15px * 2);
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto; }
-  .container::after {
-    display: block;
-    content: "";
-    clear: both; }
-
-.row {
-  display: block;
-  margin-left: -15px;
-  margin-right: -15px; }
-  .row::after {
-    display: block;
-    content: "";
-    clear: both; }
-
-.col {
-  display: block;
-  float: left;
-  padding-right: 15px;
-  padding-left: 15px; }
-
-/* Objects */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-top: 0; }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700; }
-
-p:last-child {
-  margin-bottom: 0; }
-
-/* Components */
 
 /*# sourceMappingURL=main.css.map*/

@@ -1,3 +1,4 @@
+
 /* ==========================================================================
    Base styles
    ========================================================================== */
@@ -16,6 +17,8 @@ html {
   color: $main-text-color;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
