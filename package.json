@@ -8,7 +8,8 @@
   "scripts": {
     "old-dev": "SET NODE_ENV=development webpack-dev-server --mode=development --hot",
     "dev": "webpack-dev-server --progress --colors",
-    "start": "webpack && npm run dev"
+    "start": "webpack && npm run dev",
+    "build:production": "webpack -p"
   },
   "dependencies": {
     "autoprefixer": "^8.6.3",

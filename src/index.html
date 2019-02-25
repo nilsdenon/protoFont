@@ -11,7 +11,7 @@
             <div class="fontblock__headline">
                 <div class="font-primary">
                     <!---<textarea id="primary-font" class="custom-textarea" name="" onchange="autoHeight();" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>-->
-                    <div id="primary-font" class="font font-primary fake-textarea">
+                    <div id="primary-font" class='font font-primary fake-textarea'>
                             Lorem ipsum dolor sit amet
                     </div>
                 </div>
@@ -45,12 +45,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Font-family</label>
-                        <select class="form-control" name="primary-font-select" id="">
-                            <option value="lato">Lato</option>
-                            <optgroup label="font weight">
-                                <option value="">regular</option>
-                                <option value="">bold</option>
-                            </optgroup>
+                        <select onchange="updateFont('primary-font');" class="form-control" name="primary-font-select" id="primary-font-select">
                         </select>
                     </div>
                   
@@ -97,18 +92,43 @@
         request.onload = function() {
             var jsonDoc = request.responseText;
             var jsonObject = JSON.parse(jsonDoc);
-            var sel = document.createElement("select");
-            sel.setAttribute("name", "primaryFontSelector");
+            var sel = document.querySelector("#primary-font-select");
             // all items = all webfonts
             var fonts = jsonObject.items;
-            for(var i=0; i<items.length; i++) {
-                console.log(items[i]);
+            
+            for(var i=0; i<fonts.length; i++) {
+                //console.log(fonts[i]);
+                var opt = document.createElement("option");
+                var families = fonts[i].family;
+                var t = document.createTextNode(families);
+                opt.appendChild(t);
+                opt.setAttribute("value", families);
+                var weights = fonts[i].variants;
+                sel.appendChild(opt);
+                for(var j=0; j>families.length; j++) {
+                    //console.log(families[j]);
+                   
+                }
+              
+               // var families = jsonObject.items.family;
             }
+         
+           // console.log(fonts.length);
         }
         request.open("GET", gwf, true);
         request.setRequestHeader("Accept", "application/json");
         request.send();  
-        console.log(gwf);
+
+        // Schrift aus dem Select Aktualisieren
+        function updateFont(target) {
+            var selector = document.querySelector('#primary-font-select');
+            var value = selector[selector.selectedIndex].value;
+            // String muss in einführungszeichen ausgegeben werden
+            var valueInQuotes =  "'" + value + "'";
+    
+            document.getElementById(target).style.fontFamily = valueInQuotes;
+        }
+
     </script>
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 
