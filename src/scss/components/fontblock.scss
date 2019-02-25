@@ -1,0 +1,26 @@
+.fontblock {
+    padding: 2.5rem;
+    display: flex;
+    position: relative;
+    &__body {
+
+    }
+    &__headline {
+
+    }
+    &__form {
+        legend {
+            font-weight: 300;
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.font {
+    &-primary {
+
+    }
+    &-secondary {
+
+    }
+}

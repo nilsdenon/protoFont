@@ -1,3 +1,5 @@
-div {
-    color: blue;
-  }
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+@import 'global/variables';
+@import 'global/general';
+@import 'components/fontblock';

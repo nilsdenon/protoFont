@@ -2,15 +2,14 @@
 
 <head>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
-    <div>Hello, world!</div>
-
     <div class="fontblock">
         <section class="fontblock__body">
             <div class="fontblock__headline">
-                <div class="primary-font"></div>
+                <div class="font-primary"></div>
                 <span class="hud hud--fontdetails hidden">
                     <dl>
                         <dt>Font Name</dt>
@@ -21,7 +20,7 @@
                 </span>
             </div>
             <div class="fontblock__bodytext">
-                <div class="secondary-font"></div>
+                <div class="font-secondary"></div>
                 <span class="hud hud--fontdetails hidden">
                     <dl>
                         <dt>Font Name</dt>
@@ -34,7 +33,7 @@
         </section>
         <aside class="fontblock__menu">
             <nav class="fontblock__nav">
-                <form action="">
+                <form class="fontblock__form" action="">
                     <legend>Headline</legend>
                     <span class="custom-select">
                         <select name="primary-font-select" id="">
