@@ -10,21 +10,25 @@
         <section class="fontblock__body" id="primary-fontblock">
             <div class="fontblock__headline">
                 <div class="font-primary">
-                    <div id="primary-font" class='font font-primary fake-textarea'>
-                            Lorem ipsum dolor sit amet
+                    <div id="primary-font" class='font font-primary'>
+                        Lorem ipsum dolor sit amet
                     </div>
+                    <span class="hud hud--fontdetails hidden">
+                        <dl>
+                            <dt>Font Name</dt>
+                            <dd>Font Size</dd>
+                            <dd>Letter-Spacing</dd>
+                            <dd>Line-Height</dd>
+                        </dl>
+                    </span>
                 </div>
-                <span class="hud hud--fontdetails hidden">
-                    <dl>
-                        <dt>Font Name</dt>
-                        <dd>Font Size</dd>
-                        <dd>Letter-Spacing</dd>
-                        <dd>Line-Height</dd>
-                    </dl>
-                </span>
             </div>
             <div class="fontblock__bodytext">
-                <div class="font-secondary"></div>
+                <div class="font-secondary">
+                    <div id="secondary-font" class='font font-secondary'>
+                            Lorem ipsum dolor sit amet
+                        </div>
+                </div>
                 <span class="hud hud--fontdetails hidden">
                     <dl>
                         <dt>Font Name</dt>
@@ -44,34 +48,49 @@
             
             <nav class="fontblock__nav">
                 <form class="fontblock__form" action="">
-                    <legend>Headline</legend>
-                    <div class="form-group">
-                        <textarea class="custom-textarea" name="font-primary" onkeyup="updateText('primary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Font-family</label>
-                        <select onchange="updateFont('primary-font');" class="form-control" name="primary-font-select" id="primary-font-select">
-                        </select>
-                    </div>
-                  
-                    <div class="form-group">
-                        <label class="form-label" for="Font-size">Font-size</label>
-                        <input onchange="setFontSize('primary-font', this.value);" on id="fontSizePrimary" class="form-control" name="primary-font-size" type="range" value="16" min="6" max="280" step="2" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Letter-Spacing</label>
-                        <input onchange="setLetterSpacing('primary-font', this.value);" on id="letterSpacingPrimary" class="form-control" name="primary-letter-spacing" type="range" value="1" min="-50" max="150" step=".005" />
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Text Color</label>
-                        <div class="input-group input-group-color">
-                            <input class="form-control" onkeyup="setColor( 'primary-font', 'headlineTextColor', this.value);" name="text-color" type="text" value="#4A4A4A">
-                            <div class="input-group-prepend">
-                                <span id="headlineTextColor" class="color-box" ></span>
+                    <fieldset id="subform__headline">
+                        <legend>Headline</legend>
+                        <div class="form-group">
+                            <textarea class="custom-textarea" name="font-primary" onkeyup="updateText('primary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Font-family</label>
+                            <select class="form-control" name="primary-font-select" id="primary-font-select">
+                            </select>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label class="form-label" for="Font-size">Font-size</label>
+                            <input onchange="setFontSize('primary-font', this.value);" on id="fontSizePrimary" class="form-control" name="primary-font-size" type="range" value="24" min="6" max="340" step="1" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Letter-Spacing</label>
+                            <input onchange="setLetterSpacing('primary-font', this.value);" on id="letterSpacingPrimary" class="form-control" name="primary-letter-spacing" type="range" value="1" min="-50" max="150" step=".005" />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Text Color</label>
+                            <div class="input-group input-group-color">
+                                <input class="form-control" onkeyup="setColor( 'primary-font', 'headlineTextColor', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                <div class="input-group-prepend">
+                                    <span id="headlineTextColor" class="color-box" ></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
+                    </fieldset>
+                    <fieldset id="subform__bodytext">
+                        <legend>Body Text</legend>
+                        <div class="form-group">
+                            <textarea class="custom-textarea" name="font-secondary" onkeyup="updateText('secondary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Font-family</label>
+                            <!---<select onchange="updateFont('secondary-font', 'secondary-font-select');" class="form-control" name="secondary-font-select" id="secondary-font-select">
+                            </select>-->
+                            <span id="target"></span>
+                        </div>
+                    </fieldset>
+                    <fieldset id="subform__general">
+                        <div class="form-group">
                             <label class="form-label">FontBlock Color</label>
                             <div class="input-group input-group-color">
                                 <input class="form-control" onkeyup="setBgColor( 'primary-fontblock', 'fontblockColor', this.value);" name="text-color" type="text" value="#4A4A4A">
@@ -79,7 +98,9 @@
                                     <span id="fontblockColor" class="color-box" ></span>
                                 </div>
                             </div>
-                        </div>
+                         </div>
+                    </fieldset>
+                  
                    <button onclick="saveChanges();" class="btn btn-primary btn-sm">
                        Save changes
                    </button>
@@ -91,7 +112,14 @@
     <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
-       
+        // Zuletzt gespeicherte Werte
+        loadSettings();
+        function loadSettings() {
+            //console.log(value);
+        }
+
+        
+
         function toggleNav(target) {
             var sel = document.querySelector('#' + target);
             sel.classList.toggle("is-open");
@@ -123,12 +151,18 @@
             t1.style.backgroundColor = value;
             t2.style.backgroundColor = value;
         }
-        // Webfonts aus externer JSON Datei auslesen (API)
+        // Webfonts aus externer JSON Datei laden (API)
         var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
         var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
         var gwf = gf+apiKey;
 
         var request = new XMLHttpRequest();
+        
+        prepareFontSelect();
+        
+        function prepareFontSelect() {
+
+        }
 
         request.onload = function() {
             var jsonDoc = request.responseText;
@@ -145,15 +179,10 @@
                 var optGrp = document.createElement("optgroup");
                 optGrp.setAttribute("label", families);
                 var opt = document.createElement("option");
-               
                 var t = document.createTextNode(families);
             
                 // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
                 for(var j=0; j<weights.length; j++) {
-                    // Schriftschnitten in CSS Kompatible Werte Konvertieren z.B. "regular" = 400, light = 300
-                    var weightValue, fontStyle;
-                
-                    //console.log(weights);
                     opt = document.createElement("option");
                     opt.setAttribute("data-weight", weights[j]);
                     // Setze Option Name als Familie + Schnitt als String
@@ -176,11 +205,16 @@
                 opt.appendChild(t);
                 opt.setAttribute("value", families);
                 optGrp.appendChild(opt);
+                
                 sel.appendChild(optGrp);
+               
                // var families = jsonObject.items.family;
             }
-         
-           // console.log(fonts.length);
+            var cln = sel.cloneNode(true);
+            cln.setAttribute("id", "secondary-font-select");
+            cln.setAttribute("name", "secondary-font-select");
+            document.querySelector("#target").appendChild(cln);
+            console.log(cln);
         }
         request.open("GET", gwf, true);
         request.setRequestHeader("Accept", "application/json");
@@ -189,10 +223,9 @@
         // Schrift aus dem Select Aktualisieren
         function updateFont(targetElement, targetSelect) {
             var target = document.getElementById(targetElement);
-            var selector = document.querySelector('#primary-font-select');
+            var selector = document.querySelector('#'+targetSelect);
             var value = selector[selector.selectedIndex].value;
             var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
-            var dataItalic = selector[selector.selectedIndex].getAttribute('data-italic');
             // String muss in einführungszeichen ausgegeben werden
             var valueInQuotes =  "'" + value + "'";
             // Schrift Familie setzen
@@ -242,6 +275,17 @@
         function loadChanges() {
             localStorage.getItem("Font-Family", value);
         }*/
+        // EventListeners für alle select Elemente
+        var select1 = document.querySelector("#primary-font-select");
+        var select2 = document.querySelector("#secondary-font-select");
+
+        select1.addEventListener("change", function(){
+            updateFont('primary-font', 'primary-font-select');
+        });
+
+        select2.addEventListener("change", function(){
+            updateFont('secondary-font', 'secondary-font-select');
+        });
     </script>
    
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
