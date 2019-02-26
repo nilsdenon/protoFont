@@ -53,11 +53,14 @@
                         <label class="form-label" for="Font-size">Font-size</label>
                         <input onchange="setFontSize('primary-font', this.value);" on id="fontSizePrimary" class="form-control" name="primary-font-size" type="range" value="16" min="6" max="280" step="2" />
                     </div>
-                   
+                   <button onclick="saveChanges();" class="btn btn-primary btn-sm">
+                       Save changes
+                   </button>
                 </form>
             </nav>
         </aside>
     </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
        
@@ -113,8 +116,6 @@
                 for(var j=0; j<weights.length; j++) {
                     // Schriftschnitten in CSS Kompatible Werte Konvertieren z.B. "regular" = 400, light = 300
                     var weightValue, fontStyle;
-
-                    // Italic aus den Schnitten entfernen und passende css style erzeugen
                 
                     //console.log(weights);
                     opt = document.createElement("option");
@@ -123,6 +124,12 @@
                     t = document.createTextNode((families + ' ' + weights[j]).toString());
                     // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
                     var s = document.createTextNode(families);
+
+                    // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
+                    if(weights[j].includes("italic")) {
+                        opt.setAttribute("data-italic", true);
+                        // Iwort "italic" aus dem string entfernen und regular als default setzen wenn kein Schnitt vorhanden
+                    }
                     //w = document.createTextNode( weights[j].toString());
                     //t2 = document.createTextNode(weights[j]);
                     opt.setAttribute("value", families);
@@ -149,16 +156,52 @@
             var selector = document.querySelector('#primary-font-select');
             var value = selector[selector.selectedIndex].value;
             var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
+            var dataItalic = selector[selector.selectedIndex].getAttribute('data-italic');
             // String muss in einführungszeichen ausgegeben werden
             var valueInQuotes =  "'" + value + "'";
             // Schrift Familie setzen
             target.style.fontFamily = valueInQuotes;
+            // Font-weight vorhab leeren
+            target.style.fontWeight = "";
             // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
-            target.style.fontWeight = dataWeight;
-        
-        }
+            target.style.fontWeight = dataWeight;   
+            // Setzte italic font-style wenn vorhanden
+            if(dataWeight.includes("italic")) {
+                target.style.fontStyle = "italic";
+            } else {
+                target.style.fontStyle = "";
+            }
+            // Schrift Dynamisch laden
+            // Variable value im JSON Object pushen
+            
+            // laut viele posts ist es nicht gestattet in JavaScript Webfonts dynamisch nachzuladen, hier gibt es aber eine Lösung: https://codepen.io/hbrok/pen/rrBRmj oder auch hier aus einem Pulldown http://jsfiddle.net/zejz2tkp/1/
 
+             /*var wfl = {
+                google: { 
+                        families: []
+                } 
+            };
+            wfl.google.families = value;
+            
+            WebFont.load(wfl); 
+            console.log(wfl); */
+            // webfont loader doku: https://github.com/typekit/webfontloader
+            // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
+            var loadFont = function(font) {
+                WebFont.load({
+                    google: {
+                        families: [font]
+                    }
+                });
+            }
+            loadFont(value);
+        }
+        // Änderungen in localStorage speichern
+        function saveChanges() {
+            void();
+        }
     </script>
+   
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 
 </body>
