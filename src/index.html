@@ -85,7 +85,9 @@
         }
       
         // Webfonts aus externer JSON Datei auslesen
-        var gwf = "https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
+        var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
+        var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
+        var gwf = gf+apiKey;
 
         var request = new XMLHttpRequest();
 
@@ -107,37 +109,30 @@
                
                 var t = document.createTextNode(families);
             
-                opt.appendChild(t);
-                opt.setAttribute("value", families);
-                optGrp.appendChild(opt);
-                
-               console.log(weights);
                 // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
                 for(var j=0; j<weights.length; j++) {
                     // Schriftschnitten in CSS Kompatible Werte Konvertieren z.B. "regular" = 400, light = 300
                     var weightValue, fontStyle;
-                    switch(weights) {
-                        case "regular":
-                            weightValue = 400;
-                            break;
-                        case "100light":
-                            weightValue = 100;
-                            fontStyle = "italic";
-                            break;
-                        default:
-                            weightValue = 400;    
-                    }
-                    console.log(weights);
+
+                    // Italic aus den Schnitten entfernen und passende css style erzeugen
+                
+                    //console.log(weights);
                     opt = document.createElement("option");
-                    
+                    opt.setAttribute("data-weight", weights[j]);
+                    // Setze Option Name als Familie + Schnitt als String
                     t = document.createTextNode((families + ' ' + weights[j]).toString());
+                    // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
+                    var s = document.createTextNode(families);
+                    //w = document.createTextNode( weights[j].toString());
                     //t2 = document.createTextNode(weights[j]);
-                    opt.setAttribute("value", t);
+                    opt.setAttribute("value", families);
                     opt.appendChild(t);
                     optGrp.appendChild(opt);
                     //sconsole.log(t);
                 }
-               
+                opt.appendChild(t);
+                opt.setAttribute("value", families);
+                optGrp.appendChild(opt);
                 sel.appendChild(optGrp);
                // var families = jsonObject.items.family;
             }
@@ -153,12 +148,13 @@
             var target = document.getElementById(targetElement);
             var selector = document.querySelector('#primary-font-select');
             var value = selector[selector.selectedIndex].value;
+            var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
             // String muss in einführungszeichen ausgegeben werden
             var valueInQuotes =  "'" + value + "'";
             // Schrift Familie setzen
             target.style.fontFamily = valueInQuotes;
-            // Font-weight / Schriftschnitte setzen
-           // target.style.fontWeight = va
+            // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
+            target.style.fontWeight = dataWeight;
         
         }
 
