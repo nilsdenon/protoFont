@@ -70,9 +70,9 @@
                         <div class="form-group">
                             <label class="form-label">Text Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setColor( 'font_1_1', 'headlineTextColor_1_1', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                <input class="form-control" onkeyup="setColor( 'font_1_1', 'fontColor_1_1', this.value);" name="fontColor_1_1" type="text" value="#4A4A4A">
                                 <div class="input-group-prepend">
-                                    <span id="headlineTextColor_1_1" class="color-box" ></span>
+                                    <span id="fontColor_1_1" class="color-box" ></span>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +98,9 @@
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
                                 <div class="input-group input-group-color">
-                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'bodyTextColor_1_2', this.value);" name="text-color" type="text" value="#FF3300">
+                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'fontColor_1_2', this.value);" name="fontColor_1_2" type="text" value="#FF3300">
                                     <div class="input-group-prepend">
-                                        <span id="bodyTextColor_1_2" class="color-box" ></span>
+                                        <span id="fontColor_1_2" class="color-box" ></span>
                                     </div>
                                 </div>
                             </div>
@@ -116,10 +116,7 @@
                             </div>
                          </div>
                         </div>
-                  
-                   <button type="button" onclick="saveChanges();" class="btn btn-primary btn-sm">
-                       Save changes
-                   </button>
+                 
                 </form>
                
             </nav>
@@ -128,7 +125,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
-    
+        
+        function autoHeight() {
+            var ctn = document.querySelector("#fontblock_1");
+            console.log(ctn.scrollHeight);
+        }
+
         function toggleNav(target) {
             var sel = document.querySelector('#' + target);
             sel.classList.toggle("is-open");
@@ -197,28 +199,15 @@
         }
         
        
-        // Änderungen dynamisch in localStorage als JSON Objekt speichern
-        //saveChanges();
+        // Änderungen dynamisch in localStorage speichern
         var form = document.forms["fontblock_form_1"];
         var formElements = form.elements;
-
-        function saveChanges() {
-            
-            // Erster Container
-            localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
-            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
-            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
-            localStorage.setItem("letterSpacing_1_1", formElements.letterSpacing_1_1.value);
-            // Zweiter Container
-            localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
-            localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
-            localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
-            localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
-
-        }
         
         // Änderungen beim Seitenaufbau dynamisch laden
         document.addEventListener('DOMContentLoaded', function() {
+            // reacalculate height dynamically
+            autoHeight();
+            formElements.fontSize_1_1.value 
             // Erster Textarea
             var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
             formElements.fontText_1_1.value = ls_fontText_1_1;
@@ -241,6 +230,7 @@
             f1.style.fontFamily = ls_fontSelect_1_1;
             f1.style.fontSize = ls_fontSize_1_1;
             f1.style.letterSpacing = ls_letterSpacing_1_1;
+            
 
             // Zweiter Textarea
             var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
@@ -280,15 +270,17 @@
         var el_fontSize_1_2 = formElements.fontSize_1_2;
         var el_letterSpacing_1_1 = formElements.letterSpacing_1_1;
         var el_letterSpacing_1_2 = formElements.letterSpacing_1_2;
-
+        
         // font Text 1
         //onkeyup="updateText('font_1_1', this.value);"
         el_fontText_1_1.addEventListener("keyup", function() {
             updateText('font_1_1', this.value);
+            autoHeight();
         });
         
         el_fontSize_1_1.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
+            autoHeight();
         });
 
         el_letterSpacing_1_1.addEventListener("change", function(){

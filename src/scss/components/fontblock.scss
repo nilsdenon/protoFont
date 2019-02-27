@@ -184,3 +184,71 @@ fieldset {
         margin-top: 2rem;
     }
 }
+
+$track-w: 16em;
+$track-h: .15em;
+$thumb-d: 1em;
+$track-c: $c-default;
+$dist: $track-w - $thumb-d;
+
+@mixin track() {
+	box-sizing: border-box;
+	border: none;
+	width: $track-w; height: $track-h;
+	background: $track-c;
+}
+
+@mixin thumb() {
+	box-sizing: border-box;
+	border: none;
+	width: $thumb-d; height: $thumb-d;
+	border-radius: 50%;
+	background: #008cff;
+}
+
+
+[type='range'] {
+	&, &::-webkit-slider-thumb {
+		-webkit-appearance: none
+	}
+	
+	flex: 1;
+	margin: 0;
+	padding: 0;
+	min-height: $thumb-d;
+	background: transparent;
+	font: inherit;
+	
+	&::-webkit-slider-runnable-track {
+		@include track()
+	}
+	&::-moz-range-track { @include track }
+	&::-ms-track { @include track }
+	
+	&::-webkit-slider-thumb {
+		margin-top: .5*($track-h - $thumb-d);
+		@include thumb
+	}
+	&::-moz-range-thumb { @include thumb }
+	&::-ms-thumb {
+		margin-top: 0;
+		@include thumb
+	}
+	
+	&::-ms-tooltip { display: none }
+	
+	~ output {
+		display: none;
+		
+		.js & {
+			display: block;
+			position: absolute;
+			left: .5*$thumb-d; top: 0;
+			padding: .25em .5em;
+			border-radius: 3px;
+			transform: translate(calc((var(--val) - var(--min))/(var(--max) - var(--min))*#{$dist} - 50%));
+			background: #95a;
+			color: #eee;
+		}
+	}
+}
