@@ -117,7 +117,7 @@
                          </div>
                         </div>
                   
-                   <button onclick="saveChanges();" class="btn btn-primary btn-sm">
+                   <button type="button" onclick="saveChanges();" class="btn btn-primary btn-sm">
                        Save changes
                    </button>
                 </form>
@@ -128,8 +128,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
-        // Zuletzt gespeicherte Werte
-        //loadSettings();
     
         function toggleNav(target) {
             var sel = document.querySelector('#' + target);
@@ -162,8 +160,137 @@
             t1.style.backgroundColor = value;
             t2.style.backgroundColor = value;
         }
-        // Webfonts aus externer JSON Datei laden (API)
-        var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
+        // WebFonts loader Helper
+        function loadFont(font) {
+            WebFont.load({
+                google: {
+                    families: [font]
+                }
+            });
+        }
+        // Schrift aus dem Select Aktualisieren
+        function updateFont(targetElement, targetSelect) {
+            var target = document.getElementById(targetElement);
+            var selector = document.querySelector('#'+targetSelect);
+            var value = selector[selector.selectedIndex].value;
+            var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
+            // String muss in einführungszeichen ausgegeben werden
+            var valueInQuotes =  "'" + value + "'";
+            // Schrift Familie setzen
+            target.style.fontFamily = valueInQuotes;
+            // Font-weight vorhab leeren sonst bekommt das neue index der svorher gesetzte Wert
+            target.style.fontWeight = "";
+            // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
+            target.style.fontWeight = dataWeight;   
+            // Setzte italic font-style wenn vorhanden
+            if(dataWeight.includes("italic")) {
+                target.style.fontStyle = "italic";
+            } else {
+                target.style.fontStyle = "";
+            }
+            // webfont loader doku: https://github.com/typekit/webfontloader
+            // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
+            
+            // webFont muss natürlich auch dynamich geladen werden
+            loadFont(value);
+
+        }
+        
+       
+        // Änderungen dynamisch in localStorage als JSON Objekt speichern
+        //saveChanges();
+        var form = document.forms["fontblock_form_1"];
+        var formElements = form.elements;
+
+        function saveChanges() {
+            
+            // Erster Container
+            localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
+            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
+            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
+            // Zweiter Container
+            localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
+            localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
+            localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
+
+        }
+        
+        // Änderungen beim Seitenaufbau dynamisch laden
+        document.addEventListener('DOMContentLoaded', function() {
+            // Erster Textarea
+            var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
+            formElements.fontText_1_1.value = ls_fontText_1_1;
+            // Erster Dropdown
+            var ls_fontSelect_1_1 = localStorage.getItem("fontSelect_1_1");
+            formElements.fontSelect_1_1.value = ls_fontSelect_1_1.value; 
+            // Aktuel gewähltes webFont im Dropdown berrücksichtigen
+            formElements.fontSelect_1_1.selectedIndex = ls_fontSelect_1_1.value;
+            // webFont dynamisch laden
+            loadFont(ls_fontSelect_1_1);
+            // Erster Font Size
+            var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
+            formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
+            //Erster Schrift Container aktualisieren
+            var f1 = document.querySelector("#font_1_1");
+            f1.innerHTML = ls_fontText_1_1;
+            f1.style.fontFamily = ls_fontSelect_1_1;
+            f1.style.fontSize = ls_fontSize_1_1;
+
+            // Zweiter Textarea
+            var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
+            formElements.fontText_1_2.value = ls_fontText_1_2;
+            // Zweiter Dropdown
+            var ls_fontSelect_1_2 = localStorage.getItem("fontSelect_1_2");
+            formElements.fontSelect_1_2.value = ls_fontSelect_1_2.value; 
+            // Aktuel gewähltes webFont im Dropdown berrücksichtigen
+            formElements.fontSelect_1_2.selectedIndex = ls_fontSelect_1_2.value;
+            // webFont dynamisch laden
+            loadFont(ls_fontSelect_1_2);
+            // Zweiter Font Size
+            var ls_fontSize_1_2 = localStorage.getItem("fontSize_1_2");
+            formElements.fontSize_1_2.value = ls_fontSize_1_2.value;
+
+            
+
+            //Zweiter Schrift Container aktualisieren
+            var f2 = document.querySelector("#font_1_2");
+            f2.innerHTML = ls_fontText_1_2;
+            f2.style.fontFamily = ls_fontSelect_1_2;
+            f2.style.fontSize = ls_fontSize_1_2;
+           
+            //console.log(ls_fontText_1_1.value);
+        });
+
+        // EventListeners form Elemente
+        var select1 = document.querySelector("#fontSelect_1_1");
+        var select2 = document.querySelector("#fontSelect_1_2");
+
+        var el_fontSize_1_1 = formElements.fontSize_1_1;
+        var el_fontSize_1_2 = formElements.fontSize_1_2;
+        
+        el_fontSize_1_1.addEventListener("change", function(){
+            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
+        });
+
+        el_fontSize_1_2.addEventListener("change", function(){
+            localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
+        });
+
+        select1.addEventListener("change", function(){
+            updateFont('font_1_1', 'fontSelect_1_1');
+            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
+        });
+
+        select2.addEventListener("change", function(){
+            updateFont('font_1_2', 'fontSelect_1_2');
+            localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
+        });
+        formElements.fontText_1_1.addEventListener("keyup", function() {
+            localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
+        });
+
+         // Webfonts aus externer JSON Datei laden (API)
+         var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
         var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
         var gwf = gf+apiKey;
 
@@ -223,6 +350,7 @@
             request.open("GET", gwf, true);
             request.setRequestHeader("Accept", "application/json");
             request.send();  
+            
 
         }
         // Ich konnte zwar in prepareFirstSelect() den dropdown zu Klonen aber leider funktioniert dann der eventListener für das geklonte Element nicht!
@@ -280,136 +408,6 @@
             request.send();  
 
         }
-        
-        // Schrift aus dem Select Aktualisieren
-        function updateFont(targetElement, targetSelect) {
-            var target = document.getElementById(targetElement);
-            var selector = document.querySelector('#'+targetSelect);
-            var value = selector[selector.selectedIndex].value;
-            var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
-            // String muss in einführungszeichen ausgegeben werden
-            var valueInQuotes =  "'" + value + "'";
-            // Schrift Familie setzen
-            target.style.fontFamily = valueInQuotes;
-            // Font-weight vorhab leeren sonst bekommt das neue index der svorher gesetzte Wert
-            target.style.fontWeight = "";
-            // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
-            target.style.fontWeight = dataWeight;   
-            // Setzte italic font-style wenn vorhanden
-            if(dataWeight.includes("italic")) {
-                target.style.fontStyle = "italic";
-            } else {
-                target.style.fontStyle = "";
-            }
-            // Schrift Dynamisch laden
-            // Variable value im JSON Object pushen
-            
-            // laut viele posts ist es nicht gestattet in JavaScript Webfonts dynamisch nachzuladen, hier gibt es aber eine Lösung: https://codepen.io/hbrok/pen/rrBRmj oder auch hier aus einem Pulldown http://jsfiddle.net/zejz2tkp/1/
-
-             /*var wfl = {
-                google: { 
-                        families: []
-                } 
-            };
-            wfl.google.families = value;
-            
-            WebFont.load(wfl); 
-            console.log(wfl); */
-            // webfont loader doku: https://github.com/typekit/webfontloader
-            // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
-            var loadFont = function(font) {
-                WebFont.load({
-                    google: {
-                        families: [font]
-                    }
-                });
-            }
-            loadFont(value);
-            localStorage.setItem("Font-Family", value);
-        }
-        
-        
-        // Änderungen dynamisch in localStorage als JSON Objekt speichern
-        //saveChanges();
-        var form = document.forms["fontblock_form_1"];
-        var formElements = form.elements;
-
-        function saveChanges() {
-            
-            // Font 1_1 Text Element
-            localStorage.setItem("font_1_1", formElements.fontText_1_1.value);
-            // font 1_1 Textarea
-           
-            // fontSelect_1_1
-            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
-            // TO DO: Font Select 1_1 font-weight
-           
-            // fontSelect_1_1 fontSite
-            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
-            /*for(var i=0; i<formElements.length; i++) {
-                //console.log("Element " + i + " :" + formElements[i].value + " " + formElements[i].type + "<br>");
-                var test = localStorage.setItem("element-"+i, formElements[i].value);
-                console.log(test);
-            }*/
-            //localStorage.setItem("settings", value);
-        }
-        // Änderungen dynamisch laden
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            /* es müssen folgende Dinge Passieren beim Neuladen der Seite:
-                1. wenn ich ein Formular Element änderen muss der Werte in localStorage gespeichert werden
-                2. Text muss aktualisiert werden
-                3. alle styles müssen aktualisiert werden
-                4. die im select Elemente passendes Webfonts müssen mit Hilfe vom webFontLoader geladen werden
-            */
-
-            //var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
-           // formElements.fontText_1_1.value = ls_fontText_1_1.value;
-            //var storage = localStorage.getItem("Font-Family");
-            var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
-            formElements.fontText_1_1.value = ls_fontText_1_1.value;
-
-            var ls_fontSelect_1_1 = localStorage.getItem("fontSelect_1_1");
-            formElements.fontSelect_1_1.value = ls_fontSelect_1_1.value; 
-            var loadFont = function(font) {
-                WebFont.load({
-                    google: {
-                        families: [font]
-                    }
-                });
-            }
-            loadFont(ls_fontSelect_1_1);
-            var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
-            formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
-
-            var f1 = document.querySelector("#font_1_1");
-            f1.style.fontFamily = ls_fontSelect_1_1;
-            f1.style.fontSize = ls_fontSize_1_1;
-            //console.log(localStorage.getItem("fontSelect_1_1"));
-            console.log(el_fontSize_1_1.value);
-        });
-
-        // EventListeners form Elemente
-        var select1 = document.querySelector("#fontSelect_1_1");
-        var select2 = document.querySelector("#fontSelect_1_2");
-
-        var el_fontSize_1_1 = formElements.fontSize_1_1;
-        el_fontSize_1_1.addEventListener("change", function(){
-            saveChanges();
-            console.log(el_fontSize_1_1.value);
-        });
-
-        select1.addEventListener("change", function(){
-            updateFont('font_1_1', 'fontSelect_1_1');
-            saveChanges();
-        });
-
-        select2.addEventListener("change", function(){
-            updateFont('font_1_2', 'fontSelect_1_2');
-        });
-        formElements.fontText_1_1.addEventListener("keyup", function() {
-            saveChanges();
-        });
     </script>
    
     <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
