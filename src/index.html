@@ -51,7 +51,7 @@
                     <div class="sep" id="subform__headline">
                         <legend>Headline</legend>
                         <div class="form-group">
-                            <textarea class="custom-textarea" name="fontText_1_1" onkeyup="updateText('font_1_1', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                            <textarea class="custom-textarea" name="fontText_1_1" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Font-family</label>
@@ -274,10 +274,18 @@
         var select1 = document.querySelector("#fontSelect_1_1");
         var select2 = document.querySelector("#fontSelect_1_2");
 
+        var el_fontText_1_1 = formElements.fontText_1_1;
+
         var el_fontSize_1_1 = formElements.fontSize_1_1;
         var el_fontSize_1_2 = formElements.fontSize_1_2;
         var el_letterSpacing_1_1 = formElements.letterSpacing_1_1;
         var el_letterSpacing_1_2 = formElements.letterSpacing_1_2;
+
+        // font Text 1
+        //onkeyup="updateText('font_1_1', this.value);"
+        el_fontText_1_1.addEventListener("keyup", function() {
+            updateText('font_1_1', this.value);
+        });
         
         el_fontSize_1_1.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
@@ -290,6 +298,7 @@
         el_fontSize_1_2.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
         });
+
         el_letterSpacing_1_2.addEventListener("change", function(){
             localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
         });
@@ -340,7 +349,7 @@
                 optGrp.setAttribute("label", families);
                 var opt = document.createElement("option");
                 var t = document.createTextNode(families);
-            
+                
                 // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
                 for(var j=0; j<weights.length; j++) {
                     opt = document.createElement("option");
@@ -354,20 +363,22 @@
                     if(weights[j].includes("italic")) {
                         opt.setAttribute("data-italic", true);
                     }
-                    //w = document.createTextNode( weights[j].toString());
-                    //t2 = document.createTextNode(weights[j]);
+
                     opt.setAttribute("value", families);
+                    
+                    if(families ==  localStorage.getItem("fontSelect_1_1")) {
+                        opt.setAttribute("selected", "selected");  
+                    }
+                    //console.log("test: "+ ls_fontSelect_1_1);
                     opt.appendChild(t);
                     optGrp.appendChild(opt);
-                    //sconsole.log(t);
                 }
                 opt.appendChild(t);
                 opt.setAttribute("value", families);
                 optGrp.appendChild(opt);
                 
                 sel.appendChild(optGrp);
-               
-               // var families = jsonObject.items.family;
+ 
             }
           }
             request.open("GET", gwf, true);
@@ -413,6 +424,9 @@
                     //w = document.createTextNode( weights[j].toString());
                     //t2 = document.createTextNode(weights[j]);
                     opt.setAttribute("value", families);
+                    if(families ==  localStorage.getItem("fontSelect_1_2")) {
+                        opt.setAttribute("selected", "selected");  
+                    }
                     opt.appendChild(t);
                     optGrp.appendChild(opt);
                     //sconsole.log(t);
