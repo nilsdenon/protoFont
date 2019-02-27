@@ -47,15 +47,15 @@
         <aside class="fontblock__menu">
             
             <nav class="fontblock__nav">
-                <form class="fontblock__form" action="">
-                    <fieldset id="subform__headline">
+                <form name="fontblock_form_1" class="fontblock__form" action="">
+                    <div class="sep" id="subform__headline">
                         <legend>Headline</legend>
                         <div class="form-group">
                             <textarea class="custom-textarea" name="fontText_1_1" onkeyup="updateText('font_1_1', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Font-family</label>
-                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1">
+                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1" onchange="saveChanges();">
                             </select>
                         </div>
                     
@@ -76,8 +76,8 @@
                                 </div>
                             </div>
                         </div>
-                    </fieldset>
-                    <fieldset id="subform__bodytext">
+                    </div>
+                    <div class="sep" id="subform__bodytext">
                         <legend>Body Text</legend>
                         <div class="form-group">
                             <textarea class="custom-textarea" name="fontText_1_2" onkeyup="updateText('font_1_2', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
@@ -98,24 +98,24 @@
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
                                 <div class="input-group input-group-color">
-                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'bodyTextColor_1_2', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'bodyTextColor_1_2', this.value);" name="text-color" type="text" value="#FF3300">
                                     <div class="input-group-prepend">
                                         <span id="bodyTextColor_1_2" class="color-box" ></span>
                                     </div>
                                 </div>
                             </div>
-                    </fieldset>
-                    <fieldset id="subform__general">
+                        </div>
+                    <div class="sep" id="subform__general">
                         <div class="form-group">
                             <label class="form-label">FontBlock Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                <input class="form-control" onkeyup="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="text-color" type="text" value="#fff">
                                 <div class="input-group-prepend">
                                     <span id="fontblockColor_1" class="color-box" ></span>
                                 </div>
                             </div>
                          </div>
-                    </fieldset>
+                        </div>
                   
                    <button onclick="saveChanges();" class="btn btn-primary btn-sm">
                        Save changes
@@ -130,12 +130,7 @@
         "use strict";
         // Zuletzt gespeicherte Werte
         //loadSettings();
-        function loadSettings() {
-            //console.log(value);
-        }
-
-        
-
+    
         function toggleNav(target) {
             var sel = document.querySelector('#' + target);
             sel.classList.toggle("is-open");
@@ -208,7 +203,6 @@
                     // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
                     if(weights[j].includes("italic")) {
                         opt.setAttribute("data-italic", true);
-                        // Iwort "italic" aus dem string entfernen und regular als default setzen wenn kein Schnitt vorhanden
                     }
                     //w = document.createTextNode( weights[j].toString());
                     //t2 = document.createTextNode(weights[j]);
@@ -297,7 +291,7 @@
             var valueInQuotes =  "'" + value + "'";
             // Schrift Familie setzen
             target.style.fontFamily = valueInQuotes;
-            // Font-weight vorhab leeren
+            // Font-weight vorhab leeren sonst bekommt das neue index der svorher gesetzte Wert
             target.style.fontWeight = "";
             // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
             target.style.fontWeight = dataWeight;   
@@ -333,25 +327,61 @@
             loadFont(value);
             localStorage.setItem("Font-Family", value);
         }
-        // helper
-        function saveChanges(name, value) {
-            localStorage.setItem(name, value);
-        }
-        // 
-        /*loadChanges();
-        function loadChanges() {
-            localStorage.getItem("Font-Family", value);
-        }*/
+        
         // EventListeners für alle select Elemente
         var select1 = document.querySelector("#fontSelect_1_1");
         var select2 = document.querySelector("#fontSelect_1_2");
 
         select1.addEventListener("change", function(){
             updateFont('font_1_1', 'fontSelect_1_1');
+        
         });
 
         select2.addEventListener("change", function(){
             updateFont('font_1_2', 'fontSelect_1_2');
+        });
+        // Änderungen dynamisch in localStorage als JSON Objekt speichern
+        //saveChanges();
+        var form = document.forms["fontblock_form_1"];
+        var formElements = form.elements;
+
+        function saveChanges() {
+            
+            // Font 1_1
+            localStorage.setItem("font_1_1", formElements.fontText_1_1.value);
+            // fontSelect_1_1
+            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
+            /*for(var i=0; i<formElements.length; i++) {
+                //console.log("Element " + i + " :" + formElements[i].value + " " + formElements[i].type + "<br>");
+                var test = localStorage.setItem("element-"+i, formElements[i].value);
+                console.log(test);
+            }*/
+            //localStorage.setItem("settings", value);
+        }
+        // Änderungen dynamisch laden
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            /* es müssen folgende Dinge Passieren beim Neuladen der Seite:
+                1. wenn ich ein Formular Element änderen muss der Werte in localStorage gespeichert werden
+                2. Text muss aktualisiert werden
+                3. alle styles müssen aktualisiert werden
+                4. die im select Elemente passendes Webfonts müssen mit Hilfe vom webFontLoader geladen werden
+            */
+            //var storage = localStorage.getItem("Font-Family");
+            var fs_1_1 = localStorage.getItem("fontSelect_1_1");
+            formElements.fontSelect_1_1.value = fs_1_1.value; 
+            var loadFont = function(font) {
+                WebFont.load({
+                    google: {
+                        families: [font]
+                    }
+                });
+            }
+            loadFont(fs_1_1);
+
+            var f1 = document.querySelector("#font_1_1");
+            f1.style.fontFamily = fs_1_1;
+            console.log(localStorage.getItem("fontSelect_1_1"));
         });
     </script>
    
