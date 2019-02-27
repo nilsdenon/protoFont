@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Font-family</label>
-                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1" onchange="saveChanges();">
+                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1">
                             </select>
                         </div>
                     
@@ -328,18 +328,7 @@
             localStorage.setItem("Font-Family", value);
         }
         
-        // EventListeners für alle select Elemente
-        var select1 = document.querySelector("#fontSelect_1_1");
-        var select2 = document.querySelector("#fontSelect_1_2");
-
-        select1.addEventListener("change", function(){
-            updateFont('font_1_1', 'fontSelect_1_1');
         
-        });
-
-        select2.addEventListener("change", function(){
-            updateFont('font_1_2', 'fontSelect_1_2');
-        });
         // Änderungen dynamisch in localStorage als JSON Objekt speichern
         //saveChanges();
         var form = document.forms["fontblock_form_1"];
@@ -347,10 +336,16 @@
 
         function saveChanges() {
             
-            // Font 1_1
+            // Font 1_1 Text Element
             localStorage.setItem("font_1_1", formElements.fontText_1_1.value);
+            // font 1_1 Textarea
+           
             // fontSelect_1_1
             localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
+            // TO DO: Font Select 1_1 font-weight
+           
+            // fontSelect_1_1 fontSite
+            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
             /*for(var i=0; i<formElements.length; i++) {
                 //console.log("Element " + i + " :" + formElements[i].value + " " + formElements[i].type + "<br>");
                 var test = localStorage.setItem("element-"+i, formElements[i].value);
@@ -367,9 +362,15 @@
                 3. alle styles müssen aktualisiert werden
                 4. die im select Elemente passendes Webfonts müssen mit Hilfe vom webFontLoader geladen werden
             */
+
+            //var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
+           // formElements.fontText_1_1.value = ls_fontText_1_1.value;
             //var storage = localStorage.getItem("Font-Family");
-            var fs_1_1 = localStorage.getItem("fontSelect_1_1");
-            formElements.fontSelect_1_1.value = fs_1_1.value; 
+            var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
+            formElements.fontText_1_1.value = ls_fontText_1_1.value;
+
+            var ls_fontSelect_1_1 = localStorage.getItem("fontSelect_1_1");
+            formElements.fontSelect_1_1.value = ls_fontSelect_1_1.value; 
             var loadFont = function(font) {
                 WebFont.load({
                     google: {
@@ -377,11 +378,37 @@
                     }
                 });
             }
-            loadFont(fs_1_1);
+            loadFont(ls_fontSelect_1_1);
+            var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
+            formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
 
             var f1 = document.querySelector("#font_1_1");
-            f1.style.fontFamily = fs_1_1;
-            console.log(localStorage.getItem("fontSelect_1_1"));
+            f1.style.fontFamily = ls_fontSelect_1_1;
+            f1.style.fontSize = ls_fontSize_1_1;
+            //console.log(localStorage.getItem("fontSelect_1_1"));
+            console.log(el_fontSize_1_1.value);
+        });
+
+        // EventListeners form Elemente
+        var select1 = document.querySelector("#fontSelect_1_1");
+        var select2 = document.querySelector("#fontSelect_1_2");
+
+        var el_fontSize_1_1 = formElements.fontSize_1_1;
+        el_fontSize_1_1.addEventListener("change", function(){
+            saveChanges();
+            console.log(el_fontSize_1_1.value);
+        });
+
+        select1.addEventListener("change", function(){
+            updateFont('font_1_1', 'fontSelect_1_1');
+            saveChanges();
+        });
+
+        select2.addEventListener("change", function(){
+            updateFont('font_1_2', 'fontSelect_1_2');
+        });
+        formElements.fontText_1_1.addEventListener("keyup", function() {
+            saveChanges();
         });
     </script>
    
