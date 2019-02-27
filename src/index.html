@@ -208,10 +208,12 @@
             localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
             localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
             localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
+            localStorage.setItem("letterSpacing_1_1", formElements.letterSpacing_1_1.value);
             // Zweiter Container
             localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
             localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
             localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
+            localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
 
         }
         
@@ -230,11 +232,15 @@
             // Erster Font Size
             var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
             formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
+            // Erster Letter Spacing
+            var ls_letterSpacing_1_1 = localStorage.getItem("letterSpacing_1_1");
+            formElements.letterSpacing_1_1.value = ls_letterSpacing_1_1.value;
             //Erster Schrift Container aktualisieren
             var f1 = document.querySelector("#font_1_1");
             f1.innerHTML = ls_fontText_1_1;
             f1.style.fontFamily = ls_fontSelect_1_1;
             f1.style.fontSize = ls_fontSize_1_1;
+            f1.style.letterSpacing = ls_letterSpacing_1_1;
 
             // Zweiter Textarea
             var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
@@ -249,14 +255,17 @@
             // Zweiter Font Size
             var ls_fontSize_1_2 = localStorage.getItem("fontSize_1_2");
             formElements.fontSize_1_2.value = ls_fontSize_1_2.value;
+            // Zweiter Letter Spacing
+            var ls_letterSpacing_1_2 = localStorage.getItem("letterSpacing_1_2");
+            formElements.letterSpacing_1_2.value = ls_letterSpacing_1_2.value;
 
-            
-
+        
             //Zweiter Schrift Container aktualisieren
             var f2 = document.querySelector("#font_1_2");
             f2.innerHTML = ls_fontText_1_2;
             f2.style.fontFamily = ls_fontSelect_1_2;
             f2.style.fontSize = ls_fontSize_1_2;
+            f2.style.letterSpacing = ls_letterSpacing_1_2;
            
             //console.log(ls_fontText_1_1.value);
         });
@@ -267,13 +276,22 @@
 
         var el_fontSize_1_1 = formElements.fontSize_1_1;
         var el_fontSize_1_2 = formElements.fontSize_1_2;
+        var el_letterSpacing_1_1 = formElements.letterSpacing_1_1;
+        var el_letterSpacing_1_2 = formElements.letterSpacing_1_2;
         
         el_fontSize_1_1.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
         });
 
+        el_letterSpacing_1_1.addEventListener("change", function(){
+            localStorage.setItem("letterSpacing_1_1", formElements.letterSpacing_1_1.value);
+        });
+
         el_fontSize_1_2.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
+        });
+        el_letterSpacing_1_2.addEventListener("change", function(){
+            localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
         });
 
         select1.addEventListener("change", function(){
@@ -285,16 +303,21 @@
             updateFont('font_1_2', 'fontSelect_1_2');
             localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
         });
+        // Textarea 1 Text dynamisch aktualisieren
         formElements.fontText_1_1.addEventListener("keyup", function() {
             localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
         });
 
+        // Textarea 2 Text dynamisch aktualisieren
+        formElements.fontText_1_2.addEventListener("keyup", function() {
+            localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
+        });
+
          // Webfonts aus externer JSON Datei laden (API)
-         var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
+        var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
         var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
         var gwf = gf+apiKey;
 
-        
         
         prepareFirstSelect();
         prepareSecondSelect();
