@@ -6,14 +6,14 @@
 </head>
 
 <body>
-    <div class="fontblock" id="primary-fontblock">
-        <section class="fontblock__body" id="primary-fontblock">
+    <div class="fontblock" id="fontblock_1">
+        <section class="fontblock__body">
             <div class="fontblock__headline">
                 <div class="font-primary">
-                    <div id="primary-font" class='font font-primary'>
+                    <div id="font_1_1" class='font font-primary'>
                         Lorem ipsum dolor sit amet
                     </div>
-                    <span class="hud hud--fontdetails hidden">
+                    <span id="hud_1_1" class="hud hud--fontdetails hidden">
                         <dl>
                             <dt>Font Name</dt>
                             <dd>Font Size</dd>
@@ -25,11 +25,11 @@
             </div>
             <div class="fontblock__bodytext">
                 <div class="font-secondary">
-                    <div id="secondary-font" class='font font-secondary'>
+                    <div id="font_1_2" class='font font-secondary'>
                             Lorem ipsum dolor sit amet
                         </div>
                 </div>
-                <span class="hud hud--fontdetails hidden">
+                <span class="hud_1_2 hud--fontdetails hidden">
                     <dl>
                         <dt>Font Name</dt>
                         <dd>Font Size</dd>
@@ -39,7 +39,7 @@
                 </span>
             </div>
         </section>
-        <button onclick="toggleNav('primary-fontblock'); this.classList.toggle('is-active')" class="burger">
+        <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger">
             <div class="burger-box">
                 <span class="burger-inner"></span>
             </div>
@@ -51,28 +51,28 @@
                     <fieldset id="subform__headline">
                         <legend>Headline</legend>
                         <div class="form-group">
-                            <textarea class="custom-textarea" name="font-primary" onkeyup="updateText('primary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                            <textarea class="custom-textarea" name="fontText_1_1" onkeyup="updateText('font_1_1', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Font-family</label>
-                            <select class="form-control" name="primary-font-select" id="primary-font-select">
+                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1">
                             </select>
                         </div>
                     
                         <div class="form-group">
-                            <label class="form-label" for="Font-size">Font-size</label>
-                            <input onchange="setFontSize('primary-font', this.value);" on id="fontSizePrimary" class="form-control" name="primary-font-size" type="range" value="24" min="6" max="340" step="1" />
+                            <label class="form-label">Font-size</label>
+                            <input onchange="setFontSize('font_1_1', this.value);" on id="fontSize_1_1" class="form-control" name="fontSize_1_1" type="range" value="24" min="6" max="340" step="1" />
                         </div>
                         <div class="form-group">
                             <label class="form-label">Letter-Spacing</label>
-                            <input onchange="setLetterSpacing('primary-font', this.value);" on id="letterSpacingPrimary" class="form-control" name="primary-letter-spacing" type="range" value="1" min="-50" max="150" step=".005" />
+                            <input onchange="setLetterSpacing('font_1_1', this.value);" on id="letterSpacing_1_1" class="form-control" name="letterSpacing_1_1" type="range" value="1" min="-50" max="150" step=".005" />
                         </div>
                         <div class="form-group">
                             <label class="form-label">Text Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setColor( 'primary-font', 'headlineTextColor', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                <input class="form-control" onkeyup="setColor( 'font_1_1', 'headlineTextColor_1_1', this.value);" name="text-color" type="text" value="#4A4A4A">
                                 <div class="input-group-prepend">
-                                    <span id="headlineTextColor" class="color-box" ></span>
+                                    <span id="headlineTextColor_1_1" class="color-box" ></span>
                                 </div>
                             </div>
                         </div>
@@ -80,27 +80,27 @@
                     <fieldset id="subform__bodytext">
                         <legend>Body Text</legend>
                         <div class="form-group">
-                            <textarea class="custom-textarea" name="font-secondary" onkeyup="updateText('secondary-font', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                            <textarea class="custom-textarea" name="fontText_1_2" onkeyup="updateText('font_1_2', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Font-family</label>
-                            <select onchange="updateFont('secondary-font', 'secondary-font-select');" class="form-control" name="secondary-font-select" id="secondary-font-select">
+                            <select class="form-control" name="fontSelect_1_2" id="fontSelect_1_2">
                             </select>
                         </div>
                         <div class="form-group">
                                 <label class="form-label" for="Font-size">Font-size</label>
-                                <input onchange="setFontSize('secondary-font', this.value);" on id="fontSizeSecondary" class="form-control" name="secondary-font-size" type="range" value="24" min="6" max="340" step="1" />
+                                <input onchange="setFontSize('font_1_2', this.value);" on id="fontSize_1_2" class="form-control" name="fontSize_1_2" type="range" value="24" min="6" max="340" step="1" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Letter-Spacing</label>
-                                <input onchange="setLetterSpacing('secondary-font', this.value);" on id="letterSpacingSecondary" class="form-control" name="secondary-letter-spacing" type="range" value="1" min="-50" max="150" step=".005" />
+                                <input onchange="setLetterSpacing('font_1_2', this.value);" on id="letterSpacing_1_2" class="form-control" name="letterSpacing_1_2" type="range" value="1" min="-50" max="150" step=".005" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
                                 <div class="input-group input-group-color">
-                                    <input class="form-control" onkeyup="setColor( 'secondary-font', 'bodyTextColor', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'bodyTextColor_1_2', this.value);" name="text-color" type="text" value="#4A4A4A">
                                     <div class="input-group-prepend">
-                                        <span id="bodyTextColor" class="color-box" ></span>
+                                        <span id="bodyTextColor_1_2" class="color-box" ></span>
                                     </div>
                                 </div>
                             </div>
@@ -109,9 +109,9 @@
                         <div class="form-group">
                             <label class="form-label">FontBlock Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setBgColor( 'primary-fontblock', 'fontblockColor', this.value);" name="text-color" type="text" value="#4A4A4A">
+                                <input class="form-control" onkeyup="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="text-color" type="text" value="#4A4A4A">
                                 <div class="input-group-prepend">
-                                    <span id="fontblockColor" class="color-box" ></span>
+                                    <span id="fontblockColor_1" class="color-box" ></span>
                                 </div>
                             </div>
                          </div>
@@ -182,7 +182,7 @@
             request.onload = function() {
             var jsonDoc = request.responseText;
             var jsonObject = JSON.parse(jsonDoc);
-            var sel = document.querySelector("#primary-font-select");
+            var sel = document.querySelector("#fontSelect_1_1");
             // all items = all webfonts
             var fonts = jsonObject.items;
             
@@ -237,7 +237,7 @@
             request.onload = function() {
             var jsonDoc = request.responseText;
             var jsonObject = JSON.parse(jsonDoc);
-            var sel = document.querySelector("#secondary-font-select");
+            var sel = document.querySelector("#fontSelect_1_2");
             // all items = all webfonts
             var fonts = jsonObject.items;
             
@@ -343,15 +343,15 @@
             localStorage.getItem("Font-Family", value);
         }*/
         // EventListeners für alle select Elemente
-        var select1 = document.querySelector("#primary-font-select");
-        var select2 = document.querySelector("#secondary-font-select");
+        var select1 = document.querySelector("#fontSelect_1_1");
+        var select2 = document.querySelector("#fontSelect_1_2");
 
         select1.addEventListener("change", function(){
-            updateFont('primary-font', 'primary-font-select');
+            updateFont('font_1_1', 'fontSelect_1_1');
         });
 
         select2.addEventListener("change", function(){
-            updateFont('secondary-font', 'secondary-font-select');
+            updateFont('font_1_2', 'fontSelect_1_2');
         });
     </script>
    
