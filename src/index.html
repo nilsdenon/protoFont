@@ -144,16 +144,13 @@
         <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
         <script>
             "use strict";
-        
-            function autoHeight() {
-                var ctn = document.querySelector("#fontblock_1");
-                console.log(ctn.scrollHeight);
-            }
-
+            
+            /****** 01 FUNKTIONEN ******/
             function toggleNav(target) {
                 var sel = document.querySelector('#' + target);
                 sel.classList.toggle("is-open");
             }
+
             function updateText(el, text) {
             var target = document.getElementById(el);
             target.innerHTML = text;
@@ -223,15 +220,15 @@
                 loadFont(value);
 
             } 
-        
-            // Änderungen dynamisch in localStorage speichern
+            /****** 02 EVENT LISTENERS ******/
+            // Form Vars
             var form = document.forms["fontblock_form_1"];
             var formElements = form.elements;
             
             // Änderungen beim Seitenaufbau dynamisch laden
             document.addEventListener('DOMContentLoaded', function() {
                 // reacalculate height dynamically
-                autoHeight();
+    
                 formElements.fontSize_1_1.value 
                 // Erster Textarea
                 var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
@@ -444,112 +441,104 @@
             function prepareFirstSelect() {
                 var request = new XMLHttpRequest();
                 request.onload = function() {
-                var jsonDoc = request.responseText;
-                var jsonObject = JSON.parse(jsonDoc);
-                var sel = document.querySelector("#fontSelect_1_1");
-                // all items = all webfonts
-                var fonts = jsonObject.items;
-                
-                // Erste Schleifte = alle Schriftfamilien holen
-                for(var i=0; i<fonts.length; i++) {
-                    var families = fonts[i].family;
-                    var weights = fonts[i].variants;
-
-                    var optGrp = document.createElement("optgroup");
-                    optGrp.setAttribute("label", families);
-                    var opt = document.createElement("option");
-                    var t = document.createTextNode(families);
+                    var jsonDoc = request.responseText;
+                    var jsonObject = JSON.parse(jsonDoc);
+                    var sel = document.querySelector("#fontSelect_1_1");
+                    // all items = all webfonts
+                    var fonts = jsonObject.items;
                     
-                    // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
-                    for(var j=0; j<weights.length; j++) {
-                        opt = document.createElement("option");
-                        opt.setAttribute("data-weight", weights[j]);
-                        // Setze Option Name als Familie + Schnitt als String
-                        t = document.createTextNode((families + ' ' + weights[j]).toString());
-                        // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
-                        var s = document.createTextNode(families);
+                    // Erste Schleifte = alle Schriftfamilien holen
+                    for(var i=0; i<fonts.length; i++) {
+                        var families = fonts[i].family;
+                        var weights = fonts[i].variants;
 
-                        // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
-                        if(weights[j].includes("italic")) {
-                            opt.setAttribute("data-italic", true);
-                        }
-
-                        opt.setAttribute("value", families);
+                        var optGrp = document.createElement("optgroup");
+                        optGrp.setAttribute("label", families);
+                        var opt = document.createElement("option");
+                        var t = document.createTextNode(families);
                         
-                        if(families ==  localStorage.getItem("fontSelect_1_1")) {
-                            opt.setAttribute("selected", "selected");  
+                        // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
+                        for(var j=0; j<weights.length; j++) {
+                            opt = document.createElement("option");
+                            opt.setAttribute("data-weight", weights[j]);
+                            // Setze Option Name als Familie + Schnitt als String
+                            t = document.createTextNode((families + ' ' + weights[j]).toString());
+                            // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
+                            var s = document.createTextNode(families);
+
+                            // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
+                            if(weights[j].includes("italic")) {
+                                opt.setAttribute("data-italic", true);
+                            }
+
+                            opt.setAttribute("value", families);
+                            
+                            if(families ==  localStorage.getItem("fontSelect_1_1")) {
+                                opt.setAttribute("selected", "selected");  
+                            }
+                            //console.log("test: "+ ls_fontSelect_1_1);
+                            opt.appendChild(t);
+                            optGrp.appendChild(opt);
                         }
-                        //console.log("test: "+ ls_fontSelect_1_1);
                         opt.appendChild(t);
+                        opt.setAttribute("value", families);
                         optGrp.appendChild(opt);
+                        
+                        sel.appendChild(optGrp);
+        
                     }
-                    opt.appendChild(t);
-                    opt.setAttribute("value", families);
-                    optGrp.appendChild(opt);
-                    
-                    sel.appendChild(optGrp);
-    
                 }
-            }
                 request.open("GET", gwf, true);
                 request.setRequestHeader("Accept", "application/json");
                 request.send();  
-                
 
             }
             // Ich konnte zwar in prepareFirstSelect() den dropdown zu Klonen aber leider funktioniert dann der eventListener für das geklonte Element nicht!
             function prepareSecondSelect() {
                 var request = new XMLHttpRequest();
                 request.onload = function() {
-                var jsonDoc = request.responseText;
-                var jsonObject = JSON.parse(jsonDoc);
-                var sel = document.querySelector("#fontSelect_1_2");
-                // all items = all webfonts
-                var fonts = jsonObject.items;
-                
-                // Erste Schleifte = alle Schriftfamilien holen
-                for(var i=0; i<fonts.length; i++) {
-                    var families = fonts[i].family;
-                    var weights = fonts[i].variants;
+                    var jsonDoc = request.responseText;
+                    var jsonObject = JSON.parse(jsonDoc);
+                    var sel = document.querySelector("#fontSelect_1_2");
+                    // all items = all webfonts
+                    var fonts = jsonObject.items;
+                    
+                    // Erste Schleifte = alle Schriftfamilien holen
+                    for(var i=0; i<fonts.length; i++) {
+                        var families = fonts[i].family;
+                        var weights = fonts[i].variants;
 
-                    var optGrp = document.createElement("optgroup");
-                    optGrp.setAttribute("label", families);
-                    var opt = document.createElement("option");
-                    var t = document.createTextNode(families);
-                
-                    // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
-                    for(var j=0; j<weights.length; j++) {
-                        opt = document.createElement("option");
-                        opt.setAttribute("data-weight", weights[j]);
-                        // Setze Option Name als Familie + Schnitt als String
-                        t = document.createTextNode((families + ' ' + weights[j]).toString());
-                        // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
-                        var s = document.createTextNode(families);
+                        var optGrp = document.createElement("optgroup");
+                        optGrp.setAttribute("label", families);
+                        var opt = document.createElement("option");
+                        var t = document.createTextNode(families);
+                    
+                        // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
+                        for(var j=0; j<weights.length; j++) {
+                            opt = document.createElement("option");
+                            opt.setAttribute("data-weight", weights[j]);
+                            // Setze Option Name als Familie + Schnitt als String
+                            t = document.createTextNode((families + ' ' + weights[j]).toString());
+                            // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
+                            var s = document.createTextNode(families);
 
-                        // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
-                        if(weights[j].includes("italic")) {
-                            opt.setAttribute("data-italic", true);
-                            // Iwort "italic" aus dem string entfernen und regular als default setzen wenn kein Schnitt vorhanden
-                        }
-                        //w = document.createTextNode( weights[j].toString());
-                        //t2 = document.createTextNode(weights[j]);
-                        opt.setAttribute("value", families);
-                        if(families ==  localStorage.getItem("fontSelect_1_2")) {
-                            opt.setAttribute("selected", "selected");  
+                            // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
+                            if(weights[j].includes("italic")) {
+                                opt.setAttribute("data-italic", true);
+                            }
+                            opt.setAttribute("value", families);
+                            if(families ==  localStorage.getItem("fontSelect_1_2")) {
+                                opt.setAttribute("selected", "selected");  
+                            }
+                            opt.appendChild(t);
+                            optGrp.appendChild(opt);
                         }
                         opt.appendChild(t);
+                        opt.setAttribute("value", families);
                         optGrp.appendChild(opt);
-                        //sconsole.log(t);
+                        sel.appendChild(optGrp);
                     }
-                    opt.appendChild(t);
-                    opt.setAttribute("value", families);
-                    optGrp.appendChild(opt);
-                    
-                    sel.appendChild(optGrp);
-                
-                // var families = jsonObject.items.family;
                 }
-            }
                 request.open("GET", gwf, true);
                 request.setRequestHeader("Accept", "application/json");
                 request.send();  
