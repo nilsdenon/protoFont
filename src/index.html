@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
-<body>
+<body id="protoFont">
     <div class="fontblock" id="fontblock_1">
         <section class="fontblock__body">
             <div class="fontblock__headline">
@@ -107,11 +107,11 @@
                         </div>
                     <div class="sep" id="subform__general">
                         <div class="form-group">
-                            <label class="form-label">FontBlock Color</label>
+                            <label class="form-label">Background Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control jscolor {onFineChange:'update(this)'}" onchange="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="bg_color_1" type="text" value="#fff">
+                                <input class="form-control jscolor {hash:true}" onchange="setBgColor( 'protoFont', 'fontblockColorBox_1', this.value);" name="fontblockColor_1" type="text" value="#fff">
                                 <div class="input-group-prepend">
-                                    <span id="fontblockColor_1" class="color-box" ></span>
+                                    <span id="fontblockColorBox_1" class="color-box" ></span>
                                 </div>
                             </div>
                          </div>
@@ -125,11 +125,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
-        // jscolor plugin
-        function updateColor(target,jscolor) {
-            // 'jscolor' instance can be used as a string
-            document.getElementById(target).style.backgroundColor = '#' + jscolor;
-        }
+       
         function autoHeight() {
             var ctn = document.querySelector("#fontblock_1");
             console.log(ctn.scrollHeight);
@@ -197,7 +193,7 @@
             // webfont loader doku: https://github.com/typekit/webfontloader
             // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
             
-            // webFont muss natürlich auch dynamich geladen werden
+            // zuletzt gewählter webFont muss natürlich auch dynamich geladen werden
             loadFont(value);
 
         }
@@ -270,9 +266,13 @@
             var cb2 = document.querySelector("#fontColorBox_1_2");
             cb2.style.backgroundColor = ls_c2;
 
-          
-           
-            //console.log(ls_fontText_1_1.value);
+            // Hintegrundfarbe laden
+            var ls_bg1 = localStorage.getItem("fontblockColor_1");
+            formElements.fontblockColor_1.value = ls_bg1;
+            var fb1 = document.querySelector("#protoFont");
+            fb1.style.backgroundColor = ls_bg1;
+            var cb3 = document.querySelector("#fontblockColorBox_1");
+            cb3.style.backgroundColor = ls_bg1;
         });
 
         // EventListeners form Elemente
@@ -337,11 +337,16 @@
             localStorage.setItem("fontColor_1_2", this.value);
         });
 
+        // Hintegrundfarbe Speichern
+        var bg1 = formElements.fontblockColor_1;
+        bg1.addEventListener("change", function(){
+            localStorage.setItem("fontblockColor_1", this.value);
+        });
+
          // Webfonts aus externer JSON Datei laden (API)
         var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
         var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
         var gwf = gf+apiKey;
-
         
         prepareFirstSelect();
         prepareSecondSelect();
