@@ -214,8 +214,7 @@
             // zuletzt gewählter webFont muss natürlich auch dynamich geladen werden
             loadFont(value);
 
-        }
-        
+        } 
        
         // Änderungen dynamisch in localStorage speichern
         var form = document.forms["fontblock_form_1"];
@@ -546,7 +545,17 @@
             request.open("GET", gwf, true);
             request.setRequestHeader("Accept", "application/json");
             request.send();  
-
+        }
+        setDefaultValues();
+        function setDefaultValues() {
+            var fs_1_1 = localStorage.getItem("fontSize_1_1");
+            var fs_1_2 = localStorage.getItem("fontSize_1_2");
+            if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
+                localStorage.setItem("fontSize_1_1", 54);
+            }
+            if(typeof fs_1_2 == 'undefined' || fs_1_2 == null) {
+                localStorage.setItem("fontSize_1_2", 54);
+            }
         }
     </script>
    
