@@ -27,8 +27,6 @@
                         <dd class="hud-fontSize">test</dd>
                         <dt>Letter-Spacing</dt>
                         <dd class="hud-letterSpacing">test</dd>
-                        <dt>Line-Height</dt>
-                        <dd class="hud-lineHeight">test</dd>
                     </dl>
                 </div>
             </div>
@@ -37,15 +35,13 @@
                     <div id="font_1_2" class='font font-secondary'>
                         Lorem ipsum dolor sit amet
                     </div>
-                    <dl class="hud_1_2 hud hud--fontdetails">
+                    <dl id="hud_1_2" class="hud_1_2 hud hud--fontdetails">
                         <dt>Font Name</dt>
                         <dd class="hud-fontName">test</dd>
                         <dt>Font Size</dt>
                         <dd class="hud-fontSize">test</dd>
-                        <dt>Letter-Spacing</dt>
+                        <dt>Letter-Spacing</dt>      
                         <dd class="hud-letterSpacing">test</dd>
-                        <dt>Line-Height</dt>
-                        <dd class="hud-lineHeight">test</dd>
                     </dl>
                  </div>
                  
@@ -68,11 +64,11 @@
                     
                         <div class="form-group">
                             <label class="form-label">Font-size</label>
-                            <input onchange="setFontSize('font_1_1', this.value);" on id="fontSize_1_1" class="form-control" name="fontSize_1_1" type="range" value="24" min="6" max="340" step="1" />
+                            <input onchange="setFontSize('font_1_1','hud_1_1', this.value);" on id="fontSize_1_1" class="form-control" name="fontSize_1_1" type="range" value="24" min="6" max="340" step="1" />
                         </div>
                         <div class="form-group">
                             <label class="form-label">Letter-Spacing</label>
-                            <input onchange="setLetterSpacing('font_1_1', this.value);" on id="letterSpacing_1_1" class="form-control" name="letterSpacing_1_1" type="range" value="1" min="-50" max="150" step=".005" />
+                            <input onchange="setLetterSpacing('font_1_1', 'hud_1_1', this.value);" on id="letterSpacing_1_1" class="form-control" name="letterSpacing_1_1" type="range" value="1" min="-50" max="150" step=".005" />
                         </div>
                         <div class="form-group">
                             <label class="form-label">Text Color</label>
@@ -96,11 +92,11 @@
                         </div>
                         <div class="form-group">
                                 <label class="form-label" for="Font-size">Font-size</label>
-                                <input onchange="setFontSize('font_1_2', this.value);" on id="fontSize_1_2" class="form-control" name="fontSize_1_2" type="range" value="24" min="6" max="340" step="1" />
+                                <input onchange="setFontSize('font_1_2', 'hud_1_2',this.value);" on id="fontSize_1_2" class="form-control" name="fontSize_1_2" type="range" value="24" min="6" max="340" step="1" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Letter-Spacing</label>
-                                <input onchange="setLetterSpacing('font_1_2', this.value);" on id="letterSpacing_1_2" class="form-control" name="letterSpacing_1_2" type="range" value="1" min="-50" max="150" step=".005" />
+                                <input onchange="setLetterSpacing('font_1_2', 'hud_1_2', this.value);" on id="letterSpacing_1_2" class="form-control" name="letterSpacing_1_2" type="range" value="1" min="-50" max="150" step=".005" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
@@ -155,14 +151,18 @@
            target.innerHTML = text;
         }
         
-        function setFontSize(targetElement, size) {
+        function setFontSize(targetElement, hudElement, size) {
             var target = document.getElementById(targetElement);
+            var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontSize");
             target.style.fontSize = size + "px";
+            hud.innerHTML = size + "px";
         }
 
-        function setLetterSpacing(targetElement, value) {
+        function setLetterSpacing(targetElement, hudElement, value) {
             var target = document.getElementById(targetElement);
+            var hud = document.querySelector("#"+ hudElement + " " + ".hud-letterSpacing");
             target.style.letterSpacing = value + "px";
+            hud.innerHTML = value + "px";
         }
 
         function setColor(textColor, colorBox, value) {
@@ -186,11 +186,14 @@
             });
         }
         // Schrift aus dem Select Aktualisieren
-        function updateFont(targetElement, targetSelect) {
+        function updateFont(targetElement, hudElement, targetSelect) {
             var target = document.getElementById(targetElement);
             var selector = document.querySelector('#'+targetSelect);
             var value = selector[selector.selectedIndex].value;
             var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
+
+            var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontName");
+            hud.innerHTML = value;
             // String muss in einführungszeichen ausgegeben werden
             var valueInQuotes =  "'" + value + "'";
             // Schrift Familie setzen
@@ -245,6 +248,15 @@
             f1.style.fontFamily = ls_fontSelect_1_1;
             f1.style.fontSize = ls_fontSize_1_1;
             f1.style.letterSpacing = ls_letterSpacing_1_1;
+            // HUD_1_1
+            var fontName = document.querySelector("#hud_1_1 .hud-fontName");
+            var fontSize = document.querySelector("#hud_1_1 .hud-fontSize");
+            var letterSpacing = document.querySelector("#hud_1_1 .hud-letterSpacing");
+
+            fontName.innerHTML = ls_fontSelect_1_1;
+            fontSize.innerHTML = ls_fontSize_1_1 + "px";
+            letterSpacing.innerHTML = ls_letterSpacing_1_1 + "px";
+
             // Erste Farbe
             var ls_c1 = localStorage.getItem("fontColor_1_1");
             formElements.fontColor_1_1.value = ls_c1;
@@ -280,6 +292,16 @@
             f2.style.color = ls_c2;
             var cb2 = document.querySelector("#fontColorBox_1_2");
             cb2.style.backgroundColor = ls_c2;
+
+            // HUD_1_2
+            var fontName2 = document.querySelector("#hud_1_2 .hud-fontName");
+            var fontSize2 = document.querySelector("#hud_1_2 .hud-fontSize");
+            var letterSpacing2 = document.querySelector("#hud_1_2 .hud-letterSpacing");
+
+            fontName2.innerHTML = ls_fontSelect_1_2;
+            fontSize2.innerHTML = ls_fontSize_1_2 + "px";
+            letterSpacing2.innerHTML = ls_letterSpacing_1_2 + "px";
+
 
             // Hintegrundfarbe laden
             var ls_bg1 = localStorage.getItem("fontblockColor_1");
@@ -350,12 +372,12 @@
         });
 
         select1.addEventListener("change", function(){
-            updateFont('font_1_1', 'fontSelect_1_1');
+            updateFont('font_1_1', 'hud_1_1', 'fontSelect_1_1');
             localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
         });
 
         select2.addEventListener("change", function(){
-            updateFont('font_1_2', 'fontSelect_1_2');
+            updateFont('font_1_2', 'hud_1_2', 'fontSelect_1_2');
             localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
         });
         // Textarea 1 Text dynamisch aktualisieren
