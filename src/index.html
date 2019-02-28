@@ -29,7 +29,7 @@
                             Lorem ipsum dolor sit amet
                         </div>
                         <dl id="hud_1_1" class="hud hud--fontdetails">
-                            <dt>Font Name</dt>
+                            <dt>Font Family</dt>
                             <dd class="hud-fontName">test</dd>
                             <dt>Font Size</dt>
                             <dd class="hud-fontSize">test</dd>
@@ -44,7 +44,7 @@
                             Lorem ipsum dolor sit amet
                         </div>
                         <dl id="hud_1_2" class="hud_1_2 hud hud--fontdetails">
-                            <dt>Font Name</dt>
+                            <dt>Font Family</dt>
                             <dd class="hud-fontName">test</dd>
                             <dt>Font Size</dt>
                             <dd class="hud-fontSize">test</dd>
@@ -319,16 +319,18 @@
                 var ls_hud = localStorage.getItem("hudToggle");
                 JSON.parse(ls_hud);
                 var hud = formElements.hudToggle;
-            // hud.checked = ls_hud;
+                // hud.checked = ls_hud;
                 var hudContainer = document.querySelectorAll(".fontblock .font-container");
                 
                 //console.log(ls_hud);
                 if(ls_hud == "true" ) {
+                    formElements.hudToggle.checked = true;
                     for(var i=0; i<hudContainer.length; i++) {
                         hudContainer[i].classList.add("is-visible");
                     }
                     //console.log("checkbox is checked");
                 } else {
+                    formElements.hudToggle.checked = false;
                     for(var i=0; i<hudContainer.length; i++) {
                         hudContainer[i].classList.remove("is-visible");
                     }
