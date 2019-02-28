@@ -7,48 +7,55 @@
 
 <body id="protoFont">
     <div class="fontblock" id="fontblock_1">
-        <section class="fontblock__body">
+        <section class="fontblock__body"> 
+            <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger-menu">
+                <div class="burger-menu-inner">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
             <div class="fontblock__headline">
-                <div class="font-primary">
+                <div class="font-container">
                     <div id="font_1_1" class='font font-primary'>
                         Lorem ipsum dolor sit amet
                     </div>
-                    <span id="hud_1_1" class="hud hud--fontdetails hidden">
-                        <dl>
-                            <dt>Font Name</dt>
-                            <dd>Font Size</dd>
-                            <dd>Letter-Spacing</dd>
-                            <dd>Line-Height</dd>
-                        </dl>
-                    </span>
+                    <dl id="hud_1_1" class="hud hud--fontdetails">
+                        <dt>Font Name</dt>
+                        <dd class="hud-fontName">test</dd>
+                        <dt>Font Size</dt>
+                        <dd class="hud-fontSize">test</dd>
+                        <dt>Letter-Spacing</dt>
+                        <dd class="hud-letterSpacing">test</dd>
+                        <dt>Line-Height</dt>
+                        <dd class="hud-lineHeight">test</dd>
+                    </dl>
                 </div>
             </div>
             <div class="fontblock__bodytext">
-                <div class="font-secondary">
+                <div class="font-container">
                     <div id="font_1_2" class='font font-secondary'>
-                            Lorem ipsum dolor sit amet
-                        </div>
-                </div>
-                <span class="hud_1_2 hud--fontdetails hidden">
-                    <dl>
+                        Lorem ipsum dolor sit amet
+                    </div>
+                    <dl class="hud_1_2 hud hud--fontdetails">
                         <dt>Font Name</dt>
-                        <dd>Font Size</dd>
-                        <dd>Letter-Spacing</dd>
-                        <dd>Line-Height</dd>
+                        <dd class="hud-fontName">test</dd>
+                        <dt>Font Size</dt>
+                        <dd class="hud-fontSize">test</dd>
+                        <dt>Letter-Spacing</dt>
+                        <dd class="hud-letterSpacing">test</dd>
+                        <dt>Line-Height</dt>
+                        <dd class="hud-lineHeight">test</dd>
                     </dl>
-                </span>
-            </div>
+                 </div>
+                 
         </section>
-        <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger">
-            <div class="burger-box">
-                <span class="burger-inner"></span>
-            </div>
-        </button>
+      
         <aside class="fontblock__menu">
             
             <nav class="fontblock__nav">
                 <form name="fontblock_form_1" class="fontblock__form" action="">
-                    <div class="sep" id="subform__headline">
+                    <fieldset class="sep" id="subform__headline">
                         <legend>Headline</legend>
                         <div class="form-group">
                             <textarea class="custom-textarea" name="fontText_1_1" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
@@ -76,8 +83,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="sep" id="subform__bodytext">
+                    </fieldset>
+                    <fieldset class="sep" id="subform__bodytext">
                         <legend>Body Text</legend>
                         <div class="form-group">
                             <textarea class="custom-textarea" name="fontText_1_2" onkeyup="updateText('font_1_2', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
@@ -104,8 +111,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <div class="sep" id="subform__general">
+                    </fieldset>
+                    <fieldset class="sep" id="subform__general">
+                        <legend>Block Settings</legend>
                         <div class="form-group">
                             <label class="form-label">Background Color</label>
                             <div class="input-group input-group-color">
@@ -115,8 +123,15 @@
                                 </div>
                             </div>
                          </div>
+                        <div class="form-group">
+                            <div class="form-inline">
+                                <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                    <input name="hudToggle" type="checkbox" class="custom-control-input" id="customControlInline">
+                                    <label class="custom-control-label" for="customControlInline">Show Info</label>
+                                </div>
+                            </div>
                         </div>
-                 
+                    </fieldset>
                 </form>
                
             </nav>
@@ -273,6 +288,27 @@
             fb1.style.backgroundColor = ls_bg1;
             var cb3 = document.querySelector("#fontblockColorBox_1");
             cb3.style.backgroundColor = ls_bg1;
+
+            // Checkbox
+            var ls_hud = localStorage.getItem("hudToggle");
+            JSON.parse(ls_hud);
+            var hud = formElements.hudToggle;
+           // hud.checked = ls_hud;
+            var hudContainer = document.querySelectorAll(".fontblock .font-container");
+            
+            //console.log(ls_hud);
+            if(ls_hud == "true" ) {
+                for(var i=0; i<hudContainer.length; i++) {
+                    hudContainer[i].classList.add("is-visible");
+                }
+                //console.log("checkbox is checked");
+            } else {
+                for(var i=0; i<hudElements.length; i++) {
+                    hudContainer[i].classList.remove("is-visible");
+                }
+                //console.log("checkbox is unchecked");
+            }
+            
         });
 
         // EventListeners form Elemente
@@ -341,6 +377,31 @@
         var bg1 = formElements.fontblockColor_1;
         bg1.addEventListener("change", function(){
             localStorage.setItem("fontblockColor_1", this.value);
+        });
+
+        // Info Einstellung Speichern
+        var hud = formElements.hudToggle;
+        hud.addEventListener("change", function(){
+        
+            var hudContainer = document.querySelectorAll(".fontblock .font-container");
+           
+            if(this.checked) {
+                localStorage.setItem("hudToggle", true);
+                hud.checked = true;
+                
+                for(var i=0; i<hudContainer.length; i++) {
+                    hudContainer[i].classList.add("is-visible");
+                }
+                //console.log("Checkbox is checked..");
+            } else {
+                localStorage.setItem("hudToggle", false);
+                hud.checked = false;
+
+                for(var i=0; i<hudContainer.length; i++) {
+                    hudContainer[i].classList.remove("is-visible");
+                }
+                //console.log("Checkbox is not checked..");
+            }
         });
 
          // Webfonts aus externer JSON Datei laden (API)

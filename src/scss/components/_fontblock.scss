@@ -1,10 +1,28 @@
+.is-open {
+    .fontblock__body {
+        width: 100%;
+        
+        transform: translateX(-340px);
+    }
+    .fontblock__menu {
+        // + 30px is to account for box-shadow!
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .fontblock {
     display: flex;
     position: relative;
     //overflow:hidden;
     &__body {
         //margin-right: 3rem;
+        //width: calc(100% - 340px);
         width: 100%;
+        transform: translateX(0);
+        position: relative;
+        //transition: .25s ease-in-out width;
+        transition: transform .55s ease-in-out
     }
     &__headline {
 
@@ -20,13 +38,15 @@
     }
     &__menu {
         width: 340px;
-        transform: translateX(0);
-        opacity: 1;
+        transform: translateX(calc(100% + 30px));
+       
+        opacity: 0;
         transition: transform .55s ease-in-out, opacity .55s ease-in-out;
-        position: absolute;
+        position: fixed;
+        overflow: auto;
         top: 0;
         right: 0;
-        //bottom: 0;
+        bottom: 0;
         background: rgba(255,255,255, .92);
         //height: 100%;
         box-shadow: 3px 0px 15px 0px rgba(0, 0, 0, 0.54);
@@ -39,7 +59,8 @@
 .font {
     word-break: break-all;
     word-wrap: break-word;
-    padding: 1.5rem;
+    border: 1px solid transparent;
+    padding: 2rem;
     &-primary {
         // default font size
         font-size: 1rem;
@@ -47,6 +68,10 @@
     &-secondary {
 
     }
+}
+.font-container {
+    padding: 1.5rem;
+    position: relative;
 }
 input[type="range"] {
     border:none;
@@ -98,13 +123,63 @@ input[type="range"] {
     background-color: transparent !important;
     color: $c-default !important;
 }
-.is-open {
-    .fontblock__menu {
-        // + 30px is to account for box-shadow!
-        transform: translateX(calc(100% + 30px));
-        opacity: 0;
-    }
+
+.burger-menu {
+    outline: 0;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    z-index: 1;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: block;
    
+    outline: 0 !important;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255, .92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-inner {
+        width: 24px;
+        height: 14px;
+        position: relative;
+    }
+    &.is-active {
+        span:nth-child(2) {
+            width: 75%;
+        }
+    }
+    span {
+        background: #000;
+        border-radius: 3px;
+        display: block;
+        height: 2px;
+        position: absolute;
+        right: 0;
+        transform-origin: 4px 0;
+        z-index: 1;
+        transition: width .5s cubic-bezier(.77,.2,.05,1), background .5s cubic-bezier(.77,.2,.05,1),opacity .55s ease;
+        &:nth-child(1) {
+            top: 0;
+        }
+        &:nth-child(1), &:nth-child(3) {
+            width: 100%;
+        }
+        &:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+        &:nth-child(3) {
+            bottom: 0;   
+        }
+    }
 }
 .burger {
     outline: 0;
@@ -254,4 +329,43 @@ $dist: $track-w - $thumb-d;
 			color: #eee;
 		}
 	}
+}
+.is-visible {
+    .hud {
+        visibility: visible;
+        opacity: 1;
+    }
+    .font {
+        border: 1px solid $c-highlight;
+    }
+}
+.hud {
+    position: absolute;
+    bottom: 0px;
+    left: 24px;
+    color: white;
+    background: $c-highlight;
+    font-size: .85rem;
+    padding: .20rem;
+    margin: 0;
+    font-size: .75rem;
+    &, & .font {
+        opacity: 0;
+        visibility: hidden;
+        transition: $tr-default;
+    }
+    .font {
+        transition-delay: .65s;
+    }
+    dt, dd {
+        float: left;
+    }
+    dt {
+        font-weight: 500;
+        margin:0 5px;
+    }
+    dd {
+        font-weight: 300;
+        margin: 0 10px 0 0;
+    }
 }
