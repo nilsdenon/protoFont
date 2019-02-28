@@ -1,8 +1,8 @@
 .is-open {
     .fontblock__body {
         width: 100%;
-        
-        transform: translateX(-340px);
+        width: calc(100vw - 340px);
+        //transform: translateX(-340px);
     }
     .fontblock__menu {
         // + 30px is to account for box-shadow!
@@ -22,7 +22,7 @@
         transform: translateX(0);
         position: relative;
         //transition: .25s ease-in-out width;
-        transition: transform .55s ease-in-out
+        transition: width .55s ease-in-out;
     }
     &__headline {
 
