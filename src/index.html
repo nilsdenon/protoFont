@@ -237,14 +237,22 @@
             
             // Änderungen beim Seitenaufbau dynamisch laden
             document.addEventListener('DOMContentLoaded', function() {
+                setDefaultValues();
                 // menu öffnen oder schliessen
                 var menuState = localStorage.getItem("menuOpen");
                 var fontblockContainer = document.querySelector("#fontblock_1");
                 var burger = document.querySelector("#burger");
+                var bdy = document.getElementsByTagName("body")[0];
+                function removeClass() {
+                    bdy.classList.remove("removeMenuAnimationOnLoad");
+                }
                 if(menuState == "true") {
+                    bdy.classList.add("removeMenuAnimationOnLoad");
                     fontblockContainer.classList.add("is-open");
                     burger.classList.add("is-active");
+                    setTimeout(removeClass, 2000);
                 } else {
+                    bdy.classList.remove("removeMenuAnimationOnLoad");
                     fontblockContainer.classList.remove("is-open");
                     burger.classList.remove("is-active");
                 }
@@ -359,7 +367,6 @@
                 
             });
 
-           
 
             // EventListeners form Elemente
             var select1 = document.querySelector("#fontSelect_1_1");
@@ -567,20 +574,60 @@
                 request.setRequestHeader("Accept", "application/json");
                 request.send();  
             }
-            setDefaultValues();
+            
+            // Basisdaten
             function setDefaultValues() {
+                var ft_1_1 = localStorage.getItem("fontText_1_1");
                 var f_1_1 = localStorage.getItem("fontSelect_1_1");
                 var fs_1_1 = localStorage.getItem("fontSize_1_1");
+                var lsp_1_1 = localStorage.getItem("letterSpacing_1_1");
+                var fc_1_1 = localStorage.getItem("fontColor_1_1");
+
+                var ft_1_2 = localStorage.getItem("fontText_1_2");
+                var f_1_2 = localStorage.getItem("fontSelect_1_2");
                 var fs_1_2 = localStorage.getItem("fontSize_1_2");
-                if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
-                    localStorage.setItem("fontSize_1_1", 54);
-                }
-                if(typeof fs_1_2 == 'undefined' || fs_1_2 == null) {
-                    localStorage.setItem("fontSize_1_2", 54);
+                var lsp_1_2 = localStorage.getItem("letterSpacing_1_2");
+                var fc_1_2 = localStorage.getItem("fontColor_1_2");
+
+                var bg = localStorage.getItem("fontblockColor_1");
+
+                if(typeof ft_1_1 == 'undefined' || ft_1_1 == null) {
+                    localStorage.setItem("fontText_1_1", "Hello, my name is");
                 }
                 if(typeof f_1_1 == 'undefined' || f_1_1 == null) {
                     localStorage.setItem("fontSelect_1_1", "Space Mono");
                 }
+                if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
+                    localStorage.setItem("fontSize_1_1", 155);
+                }
+                if(typeof lsp_1_1 == 'undefined' || lsp_1_1 == null) {
+                    localStorage.setItem("letterSpacing_1_1", 15.75);
+                }
+                if(typeof fc_1_1 == 'undefined' || fc_1_1 == null) {
+                    localStorage.setItem("fontColor_1_1", "#F82EFF");
+                }
+
+                if(typeof ft_1_2 == 'undefined' || ft_1_2 == null) {
+                    localStorage.setItem("fontText_1_2", "Damien Pierre");
+                }
+                if(typeof f_1_2 == 'undefined' || f_1_2 == null) {
+                    localStorage.setItem("fontSelect_1_2", "Adamina");
+                }
+                if(typeof fs_1_2 == 'undefined' || fs_1_2 == null) {
+                    localStorage.setItem("fontSize_1_2", 133);
+                }
+                if(typeof lsp_1_2 == 'undefined' || lsp_1_2 == null) {
+                    localStorage.setItem("letterSpacing_1_2", 8.195);
+                }
+                if(typeof fc_1_2 == 'undefined' || fc_1_2 == null) {
+                    localStorage.setItem("fontColor_1_2", "#DEDE26");
+                }
+
+                if(typeof bg == 'undefined' || bg == null) {
+                    localStorage.setItem("fontblockColor_1", "#392D4D");
+                }
+                
+                                
             }
             // #TODO: export to PDF: https://itnext.io/javascript-convert-html-css-to-pdf-print-supported-very-sharp-and-not-blurry-c5ffe441eb5e
         </script>

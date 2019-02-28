@@ -2,7 +2,7 @@
     display: flex;
     height: $header-spacing;
     justify-content: space-between;
-    align-items:center;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +17,6 @@
     justify-content: center;
     align-items: center;
     span {
-        
     }
     &__name {
         font-family: 'Roboto', sans-serif;
@@ -30,6 +29,9 @@
         letter-spacing: 0.64px;
     }
 }
+.removeMenuAnimationOnLoad .fontblock__menu {
+    transition: none;
+}
 .burger-menu {
     outline: 0;
     /*position: absolute;
@@ -41,24 +43,24 @@
     border: none;
     cursor: pointer;
     display: block;
-   
+
     outline: 0 !important;
     padding: 0;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(255,255,255, .92);
+    background-color: rgba(255, 255, 255, 0.92);
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background .25s ease-in-out;
+    transition: background 0.25s ease-in-out;
     &-inner {
         width: 24px;
         height: 14px;
         position: relative;
     }
     &.is-active {
-        background-color: rgba(0,0,0, .92);
+        background-color: rgba(0, 0, 0, 0.92);
         span {
             background-color: white;
             &:nth-child(2) {
@@ -75,11 +77,13 @@
         right: 0;
         transform-origin: 4px 0;
         z-index: 1;
-        transition: width .5s cubic-bezier(.77,.2,.05,1), background .5s cubic-bezier(.77,.2,.05,1),opacity .55s ease;
+        transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+            background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
         &:nth-child(1) {
             top: 0;
         }
-        &:nth-child(1), &:nth-child(3) {
+        &:nth-child(1),
+        &:nth-child(3) {
             width: 100%;
         }
         &:nth-child(2) {
@@ -88,7 +92,7 @@
             width: 100%;
         }
         &:nth-child(3) {
-            bottom: 0;   
+            bottom: 0;
         }
     }
 }
