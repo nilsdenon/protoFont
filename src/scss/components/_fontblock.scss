@@ -22,10 +22,9 @@
         transform: translateX(0);
         position: relative;
         //transition: .25s ease-in-out width;
-        transition: width .55s ease-in-out;
+        transition: width 0.55s ease-in-out;
     }
     &__headline {
-
     }
     &__form {
         legend {
@@ -33,21 +32,21 @@
             font-size: 1.25rem;
         }
         label {
-            font-size: .875rem;
+            font-size: 0.875rem;
         }
     }
     &__menu {
         width: 340px;
         transform: translateX(calc(100% + 30px));
-       
+
         opacity: 0;
-        transition: transform .55s ease-in-out, opacity .55s ease-in-out;
+        transition: transform 0.55s ease-in-out, opacity 0.55s ease-in-out;
         position: fixed;
         overflow: auto;
         top: 0;
         right: 0;
         bottom: 0;
-        background: rgba(255,255,255, .92);
+        background: rgba(255, 255, 255, 0.92);
         //height: 100%;
         box-shadow: 3px 0px 15px 0px rgba(0, 0, 0, 0.54);
     }
@@ -66,15 +65,14 @@
         font-size: 1rem;
     }
     &-secondary {
-
     }
 }
 .font-container {
     padding: 1.5rem;
     position: relative;
 }
-input[type="range"] {
-    border:none;
+input[type='range'] {
+    border: none;
     padding: 0;
     background: none;
     &:focus {
@@ -82,7 +80,7 @@ input[type="range"] {
         background: none;
     }
 }
-.form-control[type="text"] {
+.form-control[type='text'] {
     background: none;
 }
 .form-control:focus {
@@ -91,9 +89,9 @@ input[type="range"] {
 }
 
 .custom-textarea {
-    font-size: .875rem;
+    font-size: 0.875rem;
     outline: 0;
-    border: 1px solid  $c-light-gray;
+    border: 1px solid $c-light-gray;
     padding: 10px;
     resize: none;
     width: 100%;
@@ -133,71 +131,87 @@ fieldset {
 }
 
 $track-w: 16em;
-$track-h: .15em;
+$track-h: 0.15em;
 $thumb-d: 1em;
 $track-c: $c-default;
 $dist: $track-w - $thumb-d;
 
 @mixin track() {
-	box-sizing: border-box;
-	border: none;
-	width: $track-w; height: $track-h;
-	background: $track-c;
+    box-sizing: border-box;
+    border: none;
+    width: $track-w;
+    height: $track-h;
+    background: $track-c;
 }
 
 @mixin thumb() {
-	box-sizing: border-box;
-	border: none;
-	width: $thumb-d; height: $thumb-d;
-	border-radius: 50%;
-	background: #008cff;
+    box-sizing: border-box;
+    border: none;
+    width: $thumb-d;
+    height: $thumb-d;
+    border-radius: 50%;
+    background: #008cff;
 }
 
-
 [type='range'] {
-	&, &::-webkit-slider-thumb {
-		-webkit-appearance: none
-	}
-	
-	flex: 1;
-	margin: 0;
-	padding: 0;
-	min-height: $thumb-d;
-	background: transparent;
-	font: inherit;
-	
-	&::-webkit-slider-runnable-track {
-		@include track()
-	}
-	&::-moz-range-track { @include track }
-	&::-ms-track { @include track }
-	
-	&::-webkit-slider-thumb {
-		margin-top: .5*($track-h - $thumb-d);
-		@include thumb
-	}
-	&::-moz-range-thumb { @include thumb }
-	&::-ms-thumb {
-		margin-top: 0;
-		@include thumb
-	}
-	
-	&::-ms-tooltip { display: none }
-	
-	~ output {
-		display: none;
-		
-		.js & {
-			display: block;
-			position: absolute;
-			left: .5*$thumb-d; top: 0;
-			padding: .25em .5em;
-			border-radius: 3px;
-			transform: translate(calc((var(--val) - var(--min))/(var(--max) - var(--min))*#{$dist} - 50%));
-			background: #95a;
-			color: #eee;
-		}
-	}
+    &,
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    min-height: $thumb-d;
+    background: transparent;
+    font: inherit;
+
+    &::-webkit-slider-runnable-track {
+        @include track();
+    }
+    &::-moz-range-track {
+        @include track;
+    }
+    &::-ms-track {
+        @include track;
+    }
+
+    &::-webkit-slider-thumb {
+        margin-top: 0.5 * ($track-h - $thumb-d);
+        @include thumb;
+    }
+    &::-moz-range-thumb {
+        @include thumb;
+    }
+    &::-ms-thumb {
+        margin-top: 0;
+        @include thumb;
+    }
+
+    &::-ms-tooltip {
+        display: none;
+    }
+
+    ~ output {
+        display: none;
+
+        .js & {
+            display: block;
+            position: absolute;
+            left: 0.5 * $thumb-d;
+            top: 0;
+            padding: 0.25em 0.5em;
+            border-radius: 3px;
+            transform: translate(
+                calc(
+                    (var(--val) - var(--min)) / (var(--max) - var(--min)) *#{$dist} -
+                        50%
+                )
+            );
+            background: #95a;
+            color: #eee;
+        }
+    }
 }
 .is-visible {
     .hud {
@@ -210,28 +224,29 @@ $dist: $track-w - $thumb-d;
 }
 .hud {
     position: absolute;
-    bottom: 0px;
+    bottom: -6px;
     left: 24px;
     color: white;
     background: $c-highlight;
-    font-size: .85rem;
-    padding: .20rem;
+    font-size: 1rem;
+    padding: 0.2rem;
     margin: 0;
-    font-size: .75rem;
-    &, & .font {
+    &,
+    & .font {
         opacity: 0;
         visibility: hidden;
         transition: $tr-default;
     }
     .font {
-        transition-delay: .65s;
+        transition-delay: 0.65s;
     }
-    dt, dd {
+    dt,
+    dd {
         float: left;
     }
     dt {
         font-weight: 500;
-        margin:0 5px;
+        margin: 0 5px;
     }
     dd {
         font-weight: 300;

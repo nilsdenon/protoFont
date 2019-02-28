@@ -575,9 +575,7 @@
                 request.send();  
             }
             
-            // Basisdaten
-            function setDefaultValues() {
-                var ft_1_1 = localStorage.getItem("fontText_1_1");
+            var ft_1_1 = localStorage.getItem("fontText_1_1");
                 var f_1_1 = localStorage.getItem("fontSelect_1_1");
                 var fs_1_1 = localStorage.getItem("fontSize_1_1");
                 var lsp_1_1 = localStorage.getItem("letterSpacing_1_1");
@@ -591,6 +589,12 @@
 
                 var bg = localStorage.getItem("fontblockColor_1");
 
+                var h = localStorage.getItem("hudToggle");
+                var m = localStorage.getItem("menuOpen");
+            // Basisdaten
+            function setDefaultValues() {
+                
+
                 if(typeof ft_1_1 == 'undefined' || ft_1_1 == null) {
                     localStorage.setItem("fontText_1_1", "Hello, my name is");
                 }
@@ -598,13 +602,13 @@
                     localStorage.setItem("fontSelect_1_1", "Space Mono");
                 }
                 if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
-                    localStorage.setItem("fontSize_1_1", 155);
+                    localStorage.setItem("fontSize_1_1", 168);
                 }
                 if(typeof lsp_1_1 == 'undefined' || lsp_1_1 == null) {
-                    localStorage.setItem("letterSpacing_1_1", 15.75);
+                    localStorage.setItem("letterSpacing_1_1", -4.1);
                 }
                 if(typeof fc_1_1 == 'undefined' || fc_1_1 == null) {
-                    localStorage.setItem("fontColor_1_1", "#F82EFF");
+                    localStorage.setItem("fontColor_1_1", "#140414");
                 }
 
                 if(typeof ft_1_2 == 'undefined' || ft_1_2 == null) {
@@ -620,11 +624,17 @@
                     localStorage.setItem("letterSpacing_1_2", 8.195);
                 }
                 if(typeof fc_1_2 == 'undefined' || fc_1_2 == null) {
-                    localStorage.setItem("fontColor_1_2", "#DEDE26");
+                    localStorage.setItem("fontColor_1_2", "#7D7D7D");
                 }
 
                 if(typeof bg == 'undefined' || bg == null) {
-                    localStorage.setItem("fontblockColor_1", "#392D4D");
+                    localStorage.setItem("fontblockColor_1", "#E3E1E1");
+                }
+                if(typeof h == 'undefined' || h == null) {
+                    localStorage.setItem("hudToggle", false);
+                }
+                if(typeof m == 'undefined' || m == null) {
+                    localStorage.setItem("menuOpen", false);
                 }
                 
                                 
