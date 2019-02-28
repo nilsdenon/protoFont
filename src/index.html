@@ -2,565 +2,578 @@
 
 <head>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">
 </head>
 
 <body id="protoFont">
-    <div class="fontblock" id="fontblock_1">
-        <section class="fontblock__body"> 
-            <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger-menu">
+    <header class="main-header">
+        <div class="branding">
+            <span class="branding__name">proto</span>
+            <span class="branding__claim">Font</span>
+        </div>
+        <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger-menu">
                 <div class="burger-menu-inner">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
             </button>
-            <div class="fontblock__headline">
-                <div class="font-container">
-                    <div id="font_1_1" class='font font-primary'>
-                        Lorem ipsum dolor sit amet
+    </header>
+    <main class="main-container">
+        <div class="fontblock" id="fontblock_1">
+            <section class="fontblock__body"> 
+               
+                <div class="fontblock__headline">
+                    <div class="font-container">
+                        <div id="font_1_1" class='font font-primary'>
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <dl id="hud_1_1" class="hud hud--fontdetails">
+                            <dt>Font Name</dt>
+                            <dd class="hud-fontName">test</dd>
+                            <dt>Font Size</dt>
+                            <dd class="hud-fontSize">test</dd>
+                            <dt>Letter-Spacing</dt>
+                            <dd class="hud-letterSpacing">test</dd>
+                        </dl>
                     </div>
-                    <dl id="hud_1_1" class="hud hud--fontdetails">
-                        <dt>Font Name</dt>
-                        <dd class="hud-fontName">test</dd>
-                        <dt>Font Size</dt>
-                        <dd class="hud-fontSize">test</dd>
-                        <dt>Letter-Spacing</dt>
-                        <dd class="hud-letterSpacing">test</dd>
-                    </dl>
                 </div>
-            </div>
-            <div class="fontblock__bodytext">
-                <div class="font-container">
-                    <div id="font_1_2" class='font font-secondary'>
-                        Lorem ipsum dolor sit amet
+                <div class="fontblock__bodytext">
+                    <div class="font-container">
+                        <div id="font_1_2" class='font font-secondary'>
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <dl id="hud_1_2" class="hud_1_2 hud hud--fontdetails">
+                            <dt>Font Name</dt>
+                            <dd class="hud-fontName">test</dd>
+                            <dt>Font Size</dt>
+                            <dd class="hud-fontSize">test</dd>
+                            <dt>Letter-Spacing</dt>      
+                            <dd class="hud-letterSpacing">test</dd>
+                        </dl>
                     </div>
-                    <dl id="hud_1_2" class="hud_1_2 hud hud--fontdetails">
-                        <dt>Font Name</dt>
-                        <dd class="hud-fontName">test</dd>
-                        <dt>Font Size</dt>
-                        <dd class="hud-fontSize">test</dd>
-                        <dt>Letter-Spacing</dt>      
-                        <dd class="hud-letterSpacing">test</dd>
-                    </dl>
-                 </div>
-                 
-        </section>
-      
-        <aside class="fontblock__menu">
-            
-            <nav class="fontblock__nav">
-                <form name="fontblock_form_1" class="fontblock__form" action="">
-                    <fieldset class="sep" id="subform__headline">
-                        <legend>Headline</legend>
-                        <div class="form-group">
-                            <textarea class="custom-textarea" name="fontText_1_1" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Font-family</label>
-                            <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1">
-                            </select>
-                        </div>
                     
-                        <div class="form-group">
-                            <label class="form-label">Font-size</label>
-                            <input onchange="setFontSize('font_1_1','hud_1_1', this.value);" on id="fontSize_1_1" class="form-control" name="fontSize_1_1" type="range" value="24" min="6" max="340" step="1" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Letter-Spacing</label>
-                            <input onchange="setLetterSpacing('font_1_1', 'hud_1_1', this.value);" on id="letterSpacing_1_1" class="form-control" name="letterSpacing_1_1" type="range" value="1" min="-50" max="150" step=".005" />
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Text Color</label>
-                            <div class="input-group input-group-color">
-                                <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_1', 'fontColorBox_1_1', this.value);" name="fontColor_1_1" type="text" value="#FF3300">
-                                <div class="input-group-prepend">
-                                    <span id="fontColorBox_1_1" class="color-box" ></span>
-                                </div>
+            </section>
+        
+            <aside class="fontblock__menu">
+                
+                <nav class="fontblock__nav">
+                    <form name="fontblock_form_1" class="fontblock__form" action="">
+                        <fieldset class="sep" id="subform__headline">
+                            <legend>Headline</legend>
+                            <div class="form-group">
+                                <textarea class="custom-textarea" name="fontText_1_1" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
                             </div>
-                        </div>
-                    </fieldset>
-                    <fieldset class="sep" id="subform__bodytext">
-                        <legend>Body Text</legend>
-                        <div class="form-group">
-                            <textarea class="custom-textarea" name="fontText_1_2" onkeyup="updateText('font_1_2', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Font-family</label>
-                            <select class="form-control" name="fontSelect_1_2" id="fontSelect_1_2">
-                            </select>
-                        </div>
-                        <div class="form-group">
-                                <label class="form-label" for="Font-size">Font-size</label>
-                                <input onchange="setFontSize('font_1_2', 'hud_1_2',this.value);" on id="fontSize_1_2" class="form-control" name="fontSize_1_2" type="range" value="24" min="6" max="340" step="1" />
+                            <div class="form-group">
+                                <label class="form-label">Font-family</label>
+                                <select class="form-control" name="fontSelect_1_1" id="fontSelect_1_1">
+                                </select>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label class="form-label">Font-size</label>
+                                <input onchange="setFontSize('font_1_1','hud_1_1', this.value);" on id="fontSize_1_1" class="form-control" name="fontSize_1_1" type="range" value="24" min="6" max="340" step="1" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Letter-Spacing</label>
-                                <input onchange="setLetterSpacing('font_1_2', 'hud_1_2', this.value);" on id="letterSpacing_1_2" class="form-control" name="letterSpacing_1_2" type="range" value="1" min="-50" max="150" step=".005" />
+                                <input onchange="setLetterSpacing('font_1_1', 'hud_1_1', this.value);" on id="letterSpacing_1_1" class="form-control" name="letterSpacing_1_1" type="range" value="1" min="-50" max="150" step=".005" />
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
                                 <div class="input-group input-group-color">
-                                    <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_2', 'fontColorBox_1_2', this.value);" name="fontColor_1_2" type="text" value="#FF3300">
+                                    <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_1', 'fontColorBox_1_1', this.value);" name="fontColor_1_1" type="text" value="#FF3300">
                                     <div class="input-group-prepend">
-                                        <span id="fontColorBox_1_2" class="color-box" ></span>
+                                        <span id="fontColorBox_1_1" class="color-box" ></span>
                                     </div>
                                 </div>
                             </div>
-                    </fieldset>
-                    <fieldset class="sep" id="subform__general">
-                        <legend>Block Settings</legend>
-                        <div class="form-group">
-                            <label class="form-label">Background Color</label>
-                            <div class="input-group input-group-color">
-                                <input class="form-control jscolor {hash:true}" onchange="setBgColor( 'protoFont', 'fontblockColorBox_1', this.value);" name="fontblockColor_1" type="text" value="#fff">
-                                <div class="input-group-prepend">
-                                    <span id="fontblockColorBox_1" class="color-box" ></span>
+                        </fieldset>
+                        <fieldset class="sep" id="subform__bodytext">
+                            <legend>Body Text</legend>
+                            <div class="form-group">
+                                <textarea class="custom-textarea" name="fontText_1_2" onkeyup="updateText('font_1_2', this.value);" placeholder="Lorem ipsum dolor sit amet" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">Lorem ipsum dolor sit amet</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Font-family</label>
+                                <select class="form-control" name="fontSelect_1_2" id="fontSelect_1_2">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                    <label class="form-label" for="Font-size">Font-size</label>
+                                    <input onchange="setFontSize('font_1_2', 'hud_1_2',this.value);" on id="fontSize_1_2" class="form-control" name="fontSize_1_2" type="range" value="24" min="6" max="340" step="1" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Letter-Spacing</label>
+                                    <input onchange="setLetterSpacing('font_1_2', 'hud_1_2', this.value);" on id="letterSpacing_1_2" class="form-control" name="letterSpacing_1_2" type="range" value="1" min="-50" max="150" step=".005" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Text Color</label>
+                                    <div class="input-group input-group-color">
+                                        <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_2', 'fontColorBox_1_2', this.value);" name="fontColor_1_2" type="text" value="#FF3300">
+                                        <div class="input-group-prepend">
+                                            <span id="fontColorBox_1_2" class="color-box" ></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </fieldset>
+                        <fieldset class="sep" id="subform__general">
+                            <legend>Block Settings</legend>
+                            <div class="form-group">
+                                <label class="form-label">Background Color</label>
+                                <div class="input-group input-group-color">
+                                    <input class="form-control jscolor {hash:true}" onchange="setBgColor( 'protoFont', 'fontblockColorBox_1', this.value);" name="fontblockColor_1" type="text" value="#fff">
+                                    <div class="input-group-prepend">
+                                        <span id="fontblockColorBox_1" class="color-box" ></span>
+                                    </div>
                                 </div>
                             </div>
-                         </div>
-                        <div class="form-group">
-                            <div class="form-inline">
-                                <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                                    <input name="hudToggle" type="checkbox" class="custom-control-input" id="customControlInline">
-                                    <label class="custom-control-label" for="customControlInline">Show Info</label>
+                            <div class="form-group">
+                                <div class="form-inline">
+                                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                        <input name="hudToggle" type="checkbox" class="custom-control-input" id="customControlInline">
+                                        <label class="custom-control-label" for="customControlInline">Show Info</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </fieldset>
-                </form>
-               
-            </nav>
-        </aside>
-    </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
-    <script>
-        "use strict";
-       
-        function autoHeight() {
-            var ctn = document.querySelector("#fontblock_1");
-            console.log(ctn.scrollHeight);
-        }
-
-        function toggleNav(target) {
-            var sel = document.querySelector('#' + target);
-            sel.classList.toggle("is-open");
-        }
-        function updateText(el, text) {
-           var target = document.getElementById(el);
-           target.innerHTML = text;
-        }
+                        </fieldset>
+                    </form>
+                
+                </nav>
+            </aside>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
+        <script>
+            "use strict";
         
-        function setFontSize(targetElement, hudElement, size) {
-            var target = document.getElementById(targetElement);
-            var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontSize");
-            target.style.fontSize = size + "px";
-            hud.innerHTML = size + "px";
-        }
+            function autoHeight() {
+                var ctn = document.querySelector("#fontblock_1");
+                console.log(ctn.scrollHeight);
+            }
 
-        function setLetterSpacing(targetElement, hudElement, value) {
-            var target = document.getElementById(targetElement);
-            var hud = document.querySelector("#"+ hudElement + " " + ".hud-letterSpacing");
-            target.style.letterSpacing = value + "px";
-            hud.innerHTML = value + "px";
-        }
+            function toggleNav(target) {
+                var sel = document.querySelector('#' + target);
+                sel.classList.toggle("is-open");
+            }
+            function updateText(el, text) {
+            var target = document.getElementById(el);
+            target.innerHTML = text;
+            }
+            
+            function setFontSize(targetElement, hudElement, size) {
+                var target = document.getElementById(targetElement);
+                var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontSize");
+                target.style.fontSize = size + "px";
+                hud.innerHTML = size + "px";
+            }
 
-        function setColor(textColor, colorBox, value) {
-            var t1 = document.getElementById(textColor);
-            var t2 = document.getElementById(colorBox);
-            t1.style.color = value;
-            t2.style.backgroundColor = value;
-        }
-        function setBgColor(BgColor, colorBox, value) {
-            var t1 = document.getElementById(BgColor);
-            var t2 = document.getElementById(colorBox);
-            t1.style.backgroundColor = value;
-            t2.style.backgroundColor = value;
-        }
-        // WebFonts loader Helper
-        function loadFont(font) {
-            WebFont.load({
-                google: {
-                    families: [font]
+            function setLetterSpacing(targetElement, hudElement, value) {
+                var target = document.getElementById(targetElement);
+                var hud = document.querySelector("#"+ hudElement + " " + ".hud-letterSpacing");
+                target.style.letterSpacing = value + "px";
+                hud.innerHTML = value + "px";
+            }
+
+            function setColor(textColor, colorBox, value) {
+                var t1 = document.getElementById(textColor);
+                var t2 = document.getElementById(colorBox);
+                t1.style.color = value;
+                t2.style.backgroundColor = value;
+            }
+            function setBgColor(BgColor, colorBox, value) {
+                var t1 = document.getElementById(BgColor);
+                var t2 = document.getElementById(colorBox);
+                t1.style.backgroundColor = value;
+                t2.style.backgroundColor = value;
+            }
+            // WebFonts loader Helper
+            function loadFont(font) {
+                WebFont.load({
+                    google: {
+                        families: [font]
+                    }
+                });
+            }
+            // Schrift aus dem Select Aktualisieren
+            function updateFont(targetElement, hudElement, targetSelect) {
+                var target = document.getElementById(targetElement);
+                var selector = document.querySelector('#'+targetSelect);
+                var value = selector[selector.selectedIndex].value;
+                var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
+
+                var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontName");
+                hud.innerHTML = value;
+                // String muss in einführungszeichen ausgegeben werden
+                var valueInQuotes =  "'" + value + "'";
+                // Schrift Familie setzen
+                target.style.fontFamily = valueInQuotes;
+                // Font-weight vorhab leeren sonst bekommt das neue index der svorher gesetzte Wert
+                target.style.fontWeight = "";
+                // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
+                target.style.fontWeight = dataWeight;   
+                // Setzte italic font-style wenn vorhanden
+                if(dataWeight.includes("italic")) {
+                    target.style.fontStyle = "italic";
+                } else {
+                    target.style.fontStyle = "";
+                }
+                // webfont loader doku: https://github.com/typekit/webfontloader
+                // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
+                
+                // zuletzt gewählter webFont muss natürlich auch dynamich geladen werden
+                loadFont(value);
+
+            } 
+        
+            // Änderungen dynamisch in localStorage speichern
+            var form = document.forms["fontblock_form_1"];
+            var formElements = form.elements;
+            
+            // Änderungen beim Seitenaufbau dynamisch laden
+            document.addEventListener('DOMContentLoaded', function() {
+                // reacalculate height dynamically
+                autoHeight();
+                formElements.fontSize_1_1.value 
+                // Erster Textarea
+                var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
+                formElements.fontText_1_1.value = ls_fontText_1_1;
+                // Erster Dropdown
+                var ls_fontSelect_1_1 = localStorage.getItem("fontSelect_1_1");
+                formElements.fontSelect_1_1.value = ls_fontSelect_1_1.value; 
+                // Aktuel gewähltes webFont im Dropdown berrücksichtigen
+                formElements.fontSelect_1_1.selectedIndex = ls_fontSelect_1_1.value;
+                // webFont dynamisch laden
+                loadFont(ls_fontSelect_1_1);
+                // Erster Font Size
+                var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
+                formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
+                // Erster Letter Spacing
+                var ls_letterSpacing_1_1 = localStorage.getItem("letterSpacing_1_1");
+                formElements.letterSpacing_1_1.value = ls_letterSpacing_1_1.value;
+                //Erster Schrift Container aktualisieren
+                var f1 = document.querySelector("#font_1_1");
+                f1.innerHTML = ls_fontText_1_1;
+                f1.style.fontFamily = ls_fontSelect_1_1;
+                f1.style.fontSize = ls_fontSize_1_1;
+                f1.style.letterSpacing = ls_letterSpacing_1_1;
+                // HUD_1_1
+                var fontName = document.querySelector("#hud_1_1 .hud-fontName");
+                var fontSize = document.querySelector("#hud_1_1 .hud-fontSize");
+                var letterSpacing = document.querySelector("#hud_1_1 .hud-letterSpacing");
+
+                fontName.innerHTML = ls_fontSelect_1_1;
+                fontSize.innerHTML = ls_fontSize_1_1 + "px";
+                letterSpacing.innerHTML = ls_letterSpacing_1_1 + "px";
+
+                // Erste Farbe
+                var ls_c1 = localStorage.getItem("fontColor_1_1");
+                formElements.fontColor_1_1.value = ls_c1;
+                f1.style.color = ls_c1;
+                var cb1 = document.querySelector("#fontColorBox_1_1");
+                cb1.style.backgroundColor = ls_c1;
+
+                // Zweiter Textarea
+                var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
+                formElements.fontText_1_2.value = ls_fontText_1_2;
+                // Zweiter Dropdown
+                var ls_fontSelect_1_2 = localStorage.getItem("fontSelect_1_2");
+                formElements.fontSelect_1_2.value = ls_fontSelect_1_2.value; 
+                // Aktuel gewähltes webFont im Dropdown berrücksichtigen
+                formElements.fontSelect_1_2.selectedIndex = ls_fontSelect_1_2.value;
+                // webFont dynamisch laden
+                loadFont(ls_fontSelect_1_2);
+                // Zweiter Font Size
+                var ls_fontSize_1_2 = localStorage.getItem("fontSize_1_2");
+                formElements.fontSize_1_2.value = ls_fontSize_1_2.value;
+                // Zweiter Letter Spacing
+                var ls_letterSpacing_1_2 = localStorage.getItem("letterSpacing_1_2");
+                formElements.letterSpacing_1_2.value = ls_letterSpacing_1_2.value;
+                //Zweiter Schrift Container aktualisieren
+                var f2 = document.querySelector("#font_1_2");
+                f2.innerHTML = ls_fontText_1_2;
+                f2.style.fontFamily = ls_fontSelect_1_2;
+                f2.style.fontSize = ls_fontSize_1_2;
+                f2.style.letterSpacing = ls_letterSpacing_1_2;
+                // Zweite Farbe
+                var ls_c2 = localStorage.getItem("fontColor_1_2");
+                formElements.fontColor_1_2.value = ls_c2;
+                f2.style.color = ls_c2;
+                var cb2 = document.querySelector("#fontColorBox_1_2");
+                cb2.style.backgroundColor = ls_c2;
+
+                // HUD_1_2
+                var fontName2 = document.querySelector("#hud_1_2 .hud-fontName");
+                var fontSize2 = document.querySelector("#hud_1_2 .hud-fontSize");
+                var letterSpacing2 = document.querySelector("#hud_1_2 .hud-letterSpacing");
+
+                fontName2.innerHTML = ls_fontSelect_1_2;
+                fontSize2.innerHTML = ls_fontSize_1_2 + "px";
+                letterSpacing2.innerHTML = ls_letterSpacing_1_2 + "px";
+
+
+                // Hintegrundfarbe laden
+                var ls_bg1 = localStorage.getItem("fontblockColor_1");
+                formElements.fontblockColor_1.value = ls_bg1;
+                var fb1 = document.querySelector("#protoFont");
+                fb1.style.backgroundColor = ls_bg1;
+                var cb3 = document.querySelector("#fontblockColorBox_1");
+                cb3.style.backgroundColor = ls_bg1;
+
+                // Checkbox
+                var ls_hud = localStorage.getItem("hudToggle");
+                JSON.parse(ls_hud);
+                var hud = formElements.hudToggle;
+            // hud.checked = ls_hud;
+                var hudContainer = document.querySelectorAll(".fontblock .font-container");
+                
+                //console.log(ls_hud);
+                if(ls_hud == "true" ) {
+                    for(var i=0; i<hudContainer.length; i++) {
+                        hudContainer[i].classList.add("is-visible");
+                    }
+                    //console.log("checkbox is checked");
+                } else {
+                    for(var i=0; i<hudContainer.length; i++) {
+                        hudContainer[i].classList.remove("is-visible");
+                    }
+                    //console.log("checkbox is unchecked");
+                }
+                
+            });
+
+            // EventListeners form Elemente
+            var select1 = document.querySelector("#fontSelect_1_1");
+            var select2 = document.querySelector("#fontSelect_1_2");
+
+            var el_fontText_1_1 = formElements.fontText_1_1;
+
+            var el_fontSize_1_1 = formElements.fontSize_1_1;
+            var el_fontSize_1_2 = formElements.fontSize_1_2;
+            var el_letterSpacing_1_1 = formElements.letterSpacing_1_1;
+            var el_letterSpacing_1_2 = formElements.letterSpacing_1_2;
+            
+            // font Text 1
+            //onkeyup="updateText('font_1_1', this.value);"
+            el_fontText_1_1.addEventListener("keyup", function() {
+                updateText('font_1_1', this.value);
+            });
+            
+            el_fontSize_1_1.addEventListener("change", function(){
+                localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
+            });
+
+            el_letterSpacing_1_1.addEventListener("change", function(){
+                localStorage.setItem("letterSpacing_1_1", formElements.letterSpacing_1_1.value);
+            });
+
+            el_fontSize_1_2.addEventListener("change", function(){
+                localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
+            });
+
+            el_letterSpacing_1_2.addEventListener("change", function(){
+                localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
+            });
+            // Erste Farbe Speichern
+            var c1 = formElements.fontColor_1_1;
+            c1.addEventListener("change", function(){
+                localStorage.setItem("fontColor_1_1", this.value);
+            });
+
+            select1.addEventListener("change", function(){
+                updateFont('font_1_1', 'hud_1_1', 'fontSelect_1_1');
+                localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
+            });
+
+            select2.addEventListener("change", function(){
+                updateFont('font_1_2', 'hud_1_2', 'fontSelect_1_2');
+                localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
+            });
+            // Textarea 1 Text dynamisch aktualisieren
+            formElements.fontText_1_1.addEventListener("keyup", function() {
+                localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
+            });
+
+            // Textarea 2 Text dynamisch aktualisieren
+            formElements.fontText_1_2.addEventListener("keyup", function() {
+                localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
+            });
+            // Zweite Farbe Speichern
+            var c2 = formElements.fontColor_1_2;
+            c2.addEventListener("change", function(){
+                localStorage.setItem("fontColor_1_2", this.value);
+            });
+
+            // Hintegrundfarbe Speichern
+            var bg1 = formElements.fontblockColor_1;
+            bg1.addEventListener("change", function(){
+                localStorage.setItem("fontblockColor_1", this.value);
+            });
+
+            // Info Einstellung Speichern
+            var hud = formElements.hudToggle;
+            hud.addEventListener("change", function(){
+            
+                var hudContainer = document.querySelectorAll(".fontblock .font-container");
+            
+                if(this.checked) {
+                    localStorage.setItem("hudToggle", true);
+                    hud.checked = true;
+                    
+                    for(var i=0; i<hudContainer.length; i++) {
+                        hudContainer[i].classList.add("is-visible");
+                    }
+                    //console.log("Checkbox is checked..");
+                } else {
+                    localStorage.setItem("hudToggle", false);
+                    hud.checked = false;
+
+                    for(var i=0; i<hudContainer.length; i++) {
+                        hudContainer[i].classList.remove("is-visible");
+                    }
+                    //console.log("Checkbox is not checked..");
                 }
             });
-        }
-        // Schrift aus dem Select Aktualisieren
-        function updateFont(targetElement, hudElement, targetSelect) {
-            var target = document.getElementById(targetElement);
-            var selector = document.querySelector('#'+targetSelect);
-            var value = selector[selector.selectedIndex].value;
-            var dataWeight = selector[selector.selectedIndex].getAttribute('data-weight');
 
-            var hud = document.querySelector("#"+ hudElement + " " + ".hud-fontName");
-            hud.innerHTML = value;
-            // String muss in einführungszeichen ausgegeben werden
-            var valueInQuotes =  "'" + value + "'";
-            // Schrift Familie setzen
-            target.style.fontFamily = valueInQuotes;
-            // Font-weight vorhab leeren sonst bekommt das neue index der svorher gesetzte Wert
-            target.style.fontWeight = "";
-            // Font-weight / Schriftschnitte setzen aus dem data-weight Attribut
-            target.style.fontWeight = dataWeight;   
-            // Setzte italic font-style wenn vorhanden
-            if(dataWeight.includes("italic")) {
-                target.style.fontStyle = "italic";
-            } else {
-                target.style.fontStyle = "";
-            }
-            // webfont loader doku: https://github.com/typekit/webfontloader
-            // TO DO Schriftschnitten müssen in der FVD Notierung Konvertiert werden: https://github.com/typekit/fvd
+            // Webfonts aus externer JSON Datei laden (API)
+            var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
+            var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
+            var gwf = gf+apiKey;
             
-            // zuletzt gewählter webFont muss natürlich auch dynamich geladen werden
-            loadFont(value);
-
-        } 
-       
-        // Änderungen dynamisch in localStorage speichern
-        var form = document.forms["fontblock_form_1"];
-        var formElements = form.elements;
-        
-        // Änderungen beim Seitenaufbau dynamisch laden
-        document.addEventListener('DOMContentLoaded', function() {
-            // reacalculate height dynamically
-            autoHeight();
-            formElements.fontSize_1_1.value 
-            // Erster Textarea
-            var ls_fontText_1_1 = localStorage.getItem("fontText_1_1");
-            formElements.fontText_1_1.value = ls_fontText_1_1;
-            // Erster Dropdown
-            var ls_fontSelect_1_1 = localStorage.getItem("fontSelect_1_1");
-            formElements.fontSelect_1_1.value = ls_fontSelect_1_1.value; 
-            // Aktuel gewähltes webFont im Dropdown berrücksichtigen
-            formElements.fontSelect_1_1.selectedIndex = ls_fontSelect_1_1.value;
-            // webFont dynamisch laden
-            loadFont(ls_fontSelect_1_1);
-            // Erster Font Size
-            var ls_fontSize_1_1 = localStorage.getItem("fontSize_1_1");
-            formElements.fontSize_1_1.value = ls_fontSize_1_1.value;
-            // Erster Letter Spacing
-            var ls_letterSpacing_1_1 = localStorage.getItem("letterSpacing_1_1");
-            formElements.letterSpacing_1_1.value = ls_letterSpacing_1_1.value;
-            //Erster Schrift Container aktualisieren
-            var f1 = document.querySelector("#font_1_1");
-            f1.innerHTML = ls_fontText_1_1;
-            f1.style.fontFamily = ls_fontSelect_1_1;
-            f1.style.fontSize = ls_fontSize_1_1;
-            f1.style.letterSpacing = ls_letterSpacing_1_1;
-            // HUD_1_1
-            var fontName = document.querySelector("#hud_1_1 .hud-fontName");
-            var fontSize = document.querySelector("#hud_1_1 .hud-fontSize");
-            var letterSpacing = document.querySelector("#hud_1_1 .hud-letterSpacing");
-
-            fontName.innerHTML = ls_fontSelect_1_1;
-            fontSize.innerHTML = ls_fontSize_1_1 + "px";
-            letterSpacing.innerHTML = ls_letterSpacing_1_1 + "px";
-
-            // Erste Farbe
-            var ls_c1 = localStorage.getItem("fontColor_1_1");
-            formElements.fontColor_1_1.value = ls_c1;
-            f1.style.color = ls_c1;
-            var cb1 = document.querySelector("#fontColorBox_1_1");
-            cb1.style.backgroundColor = ls_c1;
-
-            // Zweiter Textarea
-            var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
-            formElements.fontText_1_2.value = ls_fontText_1_2;
-            // Zweiter Dropdown
-            var ls_fontSelect_1_2 = localStorage.getItem("fontSelect_1_2");
-            formElements.fontSelect_1_2.value = ls_fontSelect_1_2.value; 
-            // Aktuel gewähltes webFont im Dropdown berrücksichtigen
-            formElements.fontSelect_1_2.selectedIndex = ls_fontSelect_1_2.value;
-            // webFont dynamisch laden
-            loadFont(ls_fontSelect_1_2);
-            // Zweiter Font Size
-            var ls_fontSize_1_2 = localStorage.getItem("fontSize_1_2");
-            formElements.fontSize_1_2.value = ls_fontSize_1_2.value;
-            // Zweiter Letter Spacing
-            var ls_letterSpacing_1_2 = localStorage.getItem("letterSpacing_1_2");
-            formElements.letterSpacing_1_2.value = ls_letterSpacing_1_2.value;
-            //Zweiter Schrift Container aktualisieren
-            var f2 = document.querySelector("#font_1_2");
-            f2.innerHTML = ls_fontText_1_2;
-            f2.style.fontFamily = ls_fontSelect_1_2;
-            f2.style.fontSize = ls_fontSize_1_2;
-            f2.style.letterSpacing = ls_letterSpacing_1_2;
-            // Zweite Farbe
-            var ls_c2 = localStorage.getItem("fontColor_1_2");
-            formElements.fontColor_1_2.value = ls_c2;
-            f2.style.color = ls_c2;
-            var cb2 = document.querySelector("#fontColorBox_1_2");
-            cb2.style.backgroundColor = ls_c2;
-
-            // HUD_1_2
-            var fontName2 = document.querySelector("#hud_1_2 .hud-fontName");
-            var fontSize2 = document.querySelector("#hud_1_2 .hud-fontSize");
-            var letterSpacing2 = document.querySelector("#hud_1_2 .hud-letterSpacing");
-
-            fontName2.innerHTML = ls_fontSelect_1_2;
-            fontSize2.innerHTML = ls_fontSize_1_2 + "px";
-            letterSpacing2.innerHTML = ls_letterSpacing_1_2 + "px";
-
-
-            // Hintegrundfarbe laden
-            var ls_bg1 = localStorage.getItem("fontblockColor_1");
-            formElements.fontblockColor_1.value = ls_bg1;
-            var fb1 = document.querySelector("#protoFont");
-            fb1.style.backgroundColor = ls_bg1;
-            var cb3 = document.querySelector("#fontblockColorBox_1");
-            cb3.style.backgroundColor = ls_bg1;
-
-            // Checkbox
-            var ls_hud = localStorage.getItem("hudToggle");
-            JSON.parse(ls_hud);
-            var hud = formElements.hudToggle;
-           // hud.checked = ls_hud;
-            var hudContainer = document.querySelectorAll(".fontblock .font-container");
+            prepareFirstSelect();
+            prepareSecondSelect();
             
-            //console.log(ls_hud);
-            if(ls_hud == "true" ) {
-                for(var i=0; i<hudContainer.length; i++) {
-                    hudContainer[i].classList.add("is-visible");
-                }
-                //console.log("checkbox is checked");
-            } else {
-                for(var i=0; i<hudElements.length; i++) {
-                    hudContainer[i].classList.remove("is-visible");
-                }
-                //console.log("checkbox is unchecked");
-            }
-            
-        });
-
-        // EventListeners form Elemente
-        var select1 = document.querySelector("#fontSelect_1_1");
-        var select2 = document.querySelector("#fontSelect_1_2");
-
-        var el_fontText_1_1 = formElements.fontText_1_1;
-
-        var el_fontSize_1_1 = formElements.fontSize_1_1;
-        var el_fontSize_1_2 = formElements.fontSize_1_2;
-        var el_letterSpacing_1_1 = formElements.letterSpacing_1_1;
-        var el_letterSpacing_1_2 = formElements.letterSpacing_1_2;
-        
-        // font Text 1
-        //onkeyup="updateText('font_1_1', this.value);"
-        el_fontText_1_1.addEventListener("keyup", function() {
-            updateText('font_1_1', this.value);
-        });
-        
-        el_fontSize_1_1.addEventListener("change", function(){
-            localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
-        });
-
-        el_letterSpacing_1_1.addEventListener("change", function(){
-            localStorage.setItem("letterSpacing_1_1", formElements.letterSpacing_1_1.value);
-        });
-
-        el_fontSize_1_2.addEventListener("change", function(){
-            localStorage.setItem("fontSize_1_2", formElements.fontSize_1_2.value);
-        });
-
-        el_letterSpacing_1_2.addEventListener("change", function(){
-            localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
-        });
-        // Erste Farbe Speichern
-        var c1 = formElements.fontColor_1_1;
-        c1.addEventListener("change", function(){
-            localStorage.setItem("fontColor_1_1", this.value);
-        });
-
-        select1.addEventListener("change", function(){
-            updateFont('font_1_1', 'hud_1_1', 'fontSelect_1_1');
-            localStorage.setItem("fontSelect_1_1", formElements.fontSelect_1_1.value);
-        });
-
-        select2.addEventListener("change", function(){
-            updateFont('font_1_2', 'hud_1_2', 'fontSelect_1_2');
-            localStorage.setItem("fontSelect_1_2", formElements.fontSelect_1_2.value);
-        });
-        // Textarea 1 Text dynamisch aktualisieren
-        formElements.fontText_1_1.addEventListener("keyup", function() {
-            localStorage.setItem("fontText_1_1", formElements.fontText_1_1.value);
-        });
-
-        // Textarea 2 Text dynamisch aktualisieren
-        formElements.fontText_1_2.addEventListener("keyup", function() {
-            localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
-        });
-        // Zweite Farbe Speichern
-        var c2 = formElements.fontColor_1_2;
-        c2.addEventListener("change", function(){
-            localStorage.setItem("fontColor_1_2", this.value);
-        });
-
-        // Hintegrundfarbe Speichern
-        var bg1 = formElements.fontblockColor_1;
-        bg1.addEventListener("change", function(){
-            localStorage.setItem("fontblockColor_1", this.value);
-        });
-
-        // Info Einstellung Speichern
-        var hud = formElements.hudToggle;
-        hud.addEventListener("change", function(){
-        
-            var hudContainer = document.querySelectorAll(".fontblock .font-container");
-           
-            if(this.checked) {
-                localStorage.setItem("hudToggle", true);
-                hud.checked = true;
+            function prepareFirstSelect() {
+                var request = new XMLHttpRequest();
+                request.onload = function() {
+                var jsonDoc = request.responseText;
+                var jsonObject = JSON.parse(jsonDoc);
+                var sel = document.querySelector("#fontSelect_1_1");
+                // all items = all webfonts
+                var fonts = jsonObject.items;
                 
-                for(var i=0; i<hudContainer.length; i++) {
-                    hudContainer[i].classList.add("is-visible");
-                }
-                //console.log("Checkbox is checked..");
-            } else {
-                localStorage.setItem("hudToggle", false);
-                hud.checked = false;
+                // Erste Schleifte = alle Schriftfamilien holen
+                for(var i=0; i<fonts.length; i++) {
+                    var families = fonts[i].family;
+                    var weights = fonts[i].variants;
 
-                for(var i=0; i<hudContainer.length; i++) {
-                    hudContainer[i].classList.remove("is-visible");
-                }
-                //console.log("Checkbox is not checked..");
-            }
-        });
-
-         // Webfonts aus externer JSON Datei laden (API)
-        var apiKey = "key=AIzaSyBcJ0zfjh1BYgpDtpXDmigTl-53aojQ-Wc";
-        var gf = "https://www.googleapis.com/webfonts/v1/webfonts?";
-        var gwf = gf+apiKey;
-        
-        prepareFirstSelect();
-        prepareSecondSelect();
-        
-        function prepareFirstSelect() {
-            var request = new XMLHttpRequest();
-            request.onload = function() {
-            var jsonDoc = request.responseText;
-            var jsonObject = JSON.parse(jsonDoc);
-            var sel = document.querySelector("#fontSelect_1_1");
-            // all items = all webfonts
-            var fonts = jsonObject.items;
-            
-            // Erste Schleifte = alle Schriftfamilien holen
-            for(var i=0; i<fonts.length; i++) {
-                var families = fonts[i].family;
-                var weights = fonts[i].variants;
-
-                var optGrp = document.createElement("optgroup");
-                optGrp.setAttribute("label", families);
-                var opt = document.createElement("option");
-                var t = document.createTextNode(families);
-                
-                // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
-                for(var j=0; j<weights.length; j++) {
-                    opt = document.createElement("option");
-                    opt.setAttribute("data-weight", weights[j]);
-                    // Setze Option Name als Familie + Schnitt als String
-                    t = document.createTextNode((families + ' ' + weights[j]).toString());
-                    // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
-                    var s = document.createTextNode(families);
-
-                    // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
-                    if(weights[j].includes("italic")) {
-                        opt.setAttribute("data-italic", true);
-                    }
-
-                    opt.setAttribute("value", families);
+                    var optGrp = document.createElement("optgroup");
+                    optGrp.setAttribute("label", families);
+                    var opt = document.createElement("option");
+                    var t = document.createTextNode(families);
                     
-                    if(families ==  localStorage.getItem("fontSelect_1_1")) {
-                        opt.setAttribute("selected", "selected");  
+                    // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
+                    for(var j=0; j<weights.length; j++) {
+                        opt = document.createElement("option");
+                        opt.setAttribute("data-weight", weights[j]);
+                        // Setze Option Name als Familie + Schnitt als String
+                        t = document.createTextNode((families + ' ' + weights[j]).toString());
+                        // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
+                        var s = document.createTextNode(families);
+
+                        // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
+                        if(weights[j].includes("italic")) {
+                            opt.setAttribute("data-italic", true);
+                        }
+
+                        opt.setAttribute("value", families);
+                        
+                        if(families ==  localStorage.getItem("fontSelect_1_1")) {
+                            opt.setAttribute("selected", "selected");  
+                        }
+                        //console.log("test: "+ ls_fontSelect_1_1);
+                        opt.appendChild(t);
+                        optGrp.appendChild(opt);
                     }
-                    //console.log("test: "+ ls_fontSelect_1_1);
                     opt.appendChild(t);
-                    optGrp.appendChild(opt);
-                }
-                opt.appendChild(t);
-                opt.setAttribute("value", families);
-                optGrp.appendChild(opt);
-                
-                sel.appendChild(optGrp);
- 
-            }
-          }
-            request.open("GET", gwf, true);
-            request.setRequestHeader("Accept", "application/json");
-            request.send();  
-            
-
-        }
-        // Ich konnte zwar in prepareFirstSelect() den dropdown zu Klonen aber leider funktioniert dann der eventListener für das geklonte Element nicht!
-        function prepareSecondSelect() {
-            var request = new XMLHttpRequest();
-            request.onload = function() {
-            var jsonDoc = request.responseText;
-            var jsonObject = JSON.parse(jsonDoc);
-            var sel = document.querySelector("#fontSelect_1_2");
-            // all items = all webfonts
-            var fonts = jsonObject.items;
-            
-            // Erste Schleifte = alle Schriftfamilien holen
-            for(var i=0; i<fonts.length; i++) {
-                var families = fonts[i].family;
-                var weights = fonts[i].variants;
-
-                var optGrp = document.createElement("optgroup");
-                optGrp.setAttribute("label", families);
-                var opt = document.createElement("option");
-                var t = document.createTextNode(families);
-            
-                // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
-                for(var j=0; j<weights.length; j++) {
-                    opt = document.createElement("option");
-                    opt.setAttribute("data-weight", weights[j]);
-                    // Setze Option Name als Familie + Schnitt als String
-                    t = document.createTextNode((families + ' ' + weights[j]).toString());
-                    // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
-                    var s = document.createTextNode(families);
-
-                    // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
-                    if(weights[j].includes("italic")) {
-                        opt.setAttribute("data-italic", true);
-                        // Iwort "italic" aus dem string entfernen und regular als default setzen wenn kein Schnitt vorhanden
-                    }
-                    //w = document.createTextNode( weights[j].toString());
-                    //t2 = document.createTextNode(weights[j]);
                     opt.setAttribute("value", families);
-                    if(families ==  localStorage.getItem("fontSelect_1_2")) {
-                        opt.setAttribute("selected", "selected");  
+                    optGrp.appendChild(opt);
+                    
+                    sel.appendChild(optGrp);
+    
+                }
+            }
+                request.open("GET", gwf, true);
+                request.setRequestHeader("Accept", "application/json");
+                request.send();  
+                
+
+            }
+            // Ich konnte zwar in prepareFirstSelect() den dropdown zu Klonen aber leider funktioniert dann der eventListener für das geklonte Element nicht!
+            function prepareSecondSelect() {
+                var request = new XMLHttpRequest();
+                request.onload = function() {
+                var jsonDoc = request.responseText;
+                var jsonObject = JSON.parse(jsonDoc);
+                var sel = document.querySelector("#fontSelect_1_2");
+                // all items = all webfonts
+                var fonts = jsonObject.items;
+                
+                // Erste Schleifte = alle Schriftfamilien holen
+                for(var i=0; i<fonts.length; i++) {
+                    var families = fonts[i].family;
+                    var weights = fonts[i].variants;
+
+                    var optGrp = document.createElement("optgroup");
+                    optGrp.setAttribute("label", families);
+                    var opt = document.createElement("option");
+                    var t = document.createTextNode(families);
+                
+                    // Zweite Schleife alle fontweights / Schnitte für eine Schriftfamilie holen
+                    for(var j=0; j<weights.length; j++) {
+                        opt = document.createElement("option");
+                        opt.setAttribute("data-weight", weights[j]);
+                        // Setze Option Name als Familie + Schnitt als String
+                        t = document.createTextNode((families + ' ' + weights[j]).toString());
+                        // Setze aber Option Value nur die Familie, Schnitt wird in ein separates data Attribut gespeichert
+                        var s = document.createTextNode(families);
+
+                        // Italic muss auch aus dem Schnitt entfernt werden und als font-style definiert werden
+                        if(weights[j].includes("italic")) {
+                            opt.setAttribute("data-italic", true);
+                            // Iwort "italic" aus dem string entfernen und regular als default setzen wenn kein Schnitt vorhanden
+                        }
+                        //w = document.createTextNode( weights[j].toString());
+                        //t2 = document.createTextNode(weights[j]);
+                        opt.setAttribute("value", families);
+                        if(families ==  localStorage.getItem("fontSelect_1_2")) {
+                            opt.setAttribute("selected", "selected");  
+                        }
+                        opt.appendChild(t);
+                        optGrp.appendChild(opt);
+                        //sconsole.log(t);
                     }
                     opt.appendChild(t);
+                    opt.setAttribute("value", families);
                     optGrp.appendChild(opt);
-                    //sconsole.log(t);
-                }
-                opt.appendChild(t);
-                opt.setAttribute("value", families);
-                optGrp.appendChild(opt);
+                    
+                    sel.appendChild(optGrp);
                 
-                sel.appendChild(optGrp);
-               
-               // var families = jsonObject.items.family;
+                // var families = jsonObject.items.family;
+                }
             }
-          }
-            request.open("GET", gwf, true);
-            request.setRequestHeader("Accept", "application/json");
-            request.send();  
-        }
-        setDefaultValues();
-        function setDefaultValues() {
-            var fs_1_1 = localStorage.getItem("fontSize_1_1");
-            var fs_1_2 = localStorage.getItem("fontSize_1_2");
-            if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
-                localStorage.setItem("fontSize_1_1", 54);
+                request.open("GET", gwf, true);
+                request.setRequestHeader("Accept", "application/json");
+                request.send();  
             }
-            if(typeof fs_1_2 == 'undefined' || fs_1_2 == null) {
-                localStorage.setItem("fontSize_1_2", 54);
+            setDefaultValues();
+            function setDefaultValues() {
+                var f_1_1 = localStorage.getItem("fontSelect_1_1");
+                var fs_1_1 = localStorage.getItem("fontSize_1_1");
+                var fs_1_2 = localStorage.getItem("fontSize_1_2");
+                if(typeof fs_1_1 == 'undefined' || fs_1_1 == null) {
+                    localStorage.setItem("fontSize_1_1", 54);
+                }
+                if(typeof fs_1_2 == 'undefined' || fs_1_2 == null) {
+                    localStorage.setItem("fontSize_1_2", 54);
+                }
+                if(typeof f_1_1 == 'undefined' || f_1_1 == null) {
+                    localStorage.setItem("fontSelect_1_1", "Space Mono");
+                }
             }
-        }
-    </script>
-   
-    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
-
+            // #TODO: export to PDF: https://itnext.io/javascript-convert-html-css-to-pdf-print-supported-very-sharp-and-not-blurry-c5ffe441eb5e
+        </script>
+    
+        <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+    </main>
 </body>
 
 </html>
