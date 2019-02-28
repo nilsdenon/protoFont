@@ -11,7 +11,7 @@
             <span class="branding__name">proto</span>
             <span class="branding__claim">Font</span>
         </div>
-        <button onclick="toggleNav('fontblock_1'); this.classList.toggle('is-active')" class="burger-menu">
+        <button onclick="toggleNav('fontblock_1');" class="burger-menu">
                 <div class="burger-menu-inner">
                     <span></span>
                     <span></span>
@@ -149,11 +149,19 @@
             function toggleNav(target) {
                 var sel = document.querySelector('#' + target);
                 sel.classList.toggle("is-open");
-            }
+                //var burger = document.querySelector(".burger-menu")[0];
+                //burger.classList.toggle('is-active')
+                if(sel.classList.contains("is-open")) {
+                    localStorage.setItem("menuOpen", true);
+                    } else {
+                    localStorage.setItem("menuOpen", false);
 
+                }
+            }
+        
             function updateText(el, text) {
-            var target = document.getElementById(el);
-            target.innerHTML = text;
+                var target = document.getElementById(el);
+                target.innerHTML = text;
             }
             
             function setFontSize(targetElement, hudElement, size) {
@@ -227,7 +235,17 @@
             
             // Änderungen beim Seitenaufbau dynamisch laden
             document.addEventListener('DOMContentLoaded', function() {
-                // reacalculate height dynamically
+                // menu öffnen oder schliessen
+                var menuState = localStorage.getItem("menuOpen");
+                var fontblockContainer = document.querySelector("#fontblock_1");
+                //var burger = document.querySelector(".burger-menu")[0];
+                if(menuState == "true") {
+                    fontblockContainer.classList.add("is-open");
+                   // burger.classList.add("is-active");
+                } else {
+                    fontblockContainer.classList.remove("is-open");
+                   // burger.classList.remove("is-active");
+                }
     
                 formElements.fontSize_1_1.value 
                 // Erster Textarea
@@ -338,6 +356,8 @@
                 }
                 
             });
+
+           
 
             // EventListeners form Elemente
             var select1 = document.querySelector("#fontSelect_1_1");
