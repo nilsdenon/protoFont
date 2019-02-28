@@ -70,9 +70,9 @@
                         <div class="form-group">
                             <label class="form-label">Text Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setColor( 'font_1_1', 'fontColor_1_1', this.value);" name="fontColor_1_1" type="text" value="#4A4A4A">
+                                <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_1', 'fontColorBox_1_1', this.value);" name="fontColor_1_1" type="text" value="#FF3300">
                                 <div class="input-group-prepend">
-                                    <span id="fontColor_1_1" class="color-box" ></span>
+                                    <span id="fontColorBox_1_1" class="color-box" ></span>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +98,9 @@
                             <div class="form-group">
                                 <label class="form-label">Text Color</label>
                                 <div class="input-group input-group-color">
-                                    <input class="form-control" onkeyup="setColor( 'font_1_2', 'fontColor_1_2', this.value);" name="fontColor_1_2" type="text" value="#FF3300">
+                                    <input class="form-control jscolor {hash:true}" onchange="setColor( 'font_1_2', 'fontColorBox_1_2', this.value);" name="fontColor_1_2" type="text" value="#FF3300">
                                     <div class="input-group-prepend">
-                                        <span id="fontColor_1_2" class="color-box" ></span>
+                                        <span id="fontColorBox_1_2" class="color-box" ></span>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                         <div class="form-group">
                             <label class="form-label">FontBlock Color</label>
                             <div class="input-group input-group-color">
-                                <input class="form-control" onkeyup="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="text-color" type="text" value="#fff">
+                                <input class="form-control jscolor {onFineChange:'update(this)'}" onchange="setBgColor( 'fontblock_1', 'fontblockColor_1', this.value);" name="bg_color_1" type="text" value="#fff">
                                 <div class="input-group-prepend">
                                     <span id="fontblockColor_1" class="color-box" ></span>
                                 </div>
@@ -125,7 +125,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script> 
     <script>
         "use strict";
-        
+        // jscolor plugin
+        function updateColor(target,jscolor) {
+            // 'jscolor' instance can be used as a string
+            document.getElementById(target).style.backgroundColor = '#' + jscolor;
+        }
         function autoHeight() {
             var ctn = document.querySelector("#fontblock_1");
             console.log(ctn.scrollHeight);
@@ -230,7 +234,12 @@
             f1.style.fontFamily = ls_fontSelect_1_1;
             f1.style.fontSize = ls_fontSize_1_1;
             f1.style.letterSpacing = ls_letterSpacing_1_1;
-            
+            // Erste Farbe
+            var ls_c1 = localStorage.getItem("fontColor_1_1");
+            formElements.fontColor_1_1.value = ls_c1;
+            f1.style.color = ls_c1;
+            var cb1 = document.querySelector("#fontColorBox_1_1");
+            cb1.style.backgroundColor = ls_c1;
 
             // Zweiter Textarea
             var ls_fontText_1_2 = localStorage.getItem("fontText_1_2");
@@ -248,14 +257,20 @@
             // Zweiter Letter Spacing
             var ls_letterSpacing_1_2 = localStorage.getItem("letterSpacing_1_2");
             formElements.letterSpacing_1_2.value = ls_letterSpacing_1_2.value;
-
-        
             //Zweiter Schrift Container aktualisieren
             var f2 = document.querySelector("#font_1_2");
             f2.innerHTML = ls_fontText_1_2;
             f2.style.fontFamily = ls_fontSelect_1_2;
             f2.style.fontSize = ls_fontSize_1_2;
             f2.style.letterSpacing = ls_letterSpacing_1_2;
+            // Zweite Farbe
+            var ls_c2 = localStorage.getItem("fontColor_1_2");
+            formElements.fontColor_1_2.value = ls_c2;
+            f2.style.color = ls_c2;
+            var cb2 = document.querySelector("#fontColorBox_1_2");
+            cb2.style.backgroundColor = ls_c2;
+
+          
            
             //console.log(ls_fontText_1_1.value);
         });
@@ -275,12 +290,10 @@
         //onkeyup="updateText('font_1_1', this.value);"
         el_fontText_1_1.addEventListener("keyup", function() {
             updateText('font_1_1', this.value);
-            autoHeight();
         });
         
         el_fontSize_1_1.addEventListener("change", function(){
             localStorage.setItem("fontSize_1_1", formElements.fontSize_1_1.value);
-            autoHeight();
         });
 
         el_letterSpacing_1_1.addEventListener("change", function(){
@@ -293,6 +306,11 @@
 
         el_letterSpacing_1_2.addEventListener("change", function(){
             localStorage.setItem("letterSpacing_1_2", formElements.letterSpacing_1_2.value);
+        });
+        // Erste Farbe Speichern
+        var c1 = formElements.fontColor_1_1;
+        c1.addEventListener("change", function(){
+            localStorage.setItem("fontColor_1_1", this.value);
         });
 
         select1.addEventListener("change", function(){
@@ -312,6 +330,11 @@
         // Textarea 2 Text dynamisch aktualisieren
         formElements.fontText_1_2.addEventListener("keyup", function() {
             localStorage.setItem("fontText_1_2", formElements.fontText_1_2.value);
+        });
+        // Zweite Farbe Speichern
+        var c2 = formElements.fontColor_1_2;
+        c2.addEventListener("change", function(){
+            localStorage.setItem("fontColor_1_2", this.value);
         });
 
          // Webfonts aus externer JSON Datei laden (API)

@@ -92,9 +92,12 @@ input[type="range"] {
     border-radius: 50%;
     background-color: $c-default;
     box-shadow: 0 2px 3px #ccc;
-    transition: background-color .65s ease;
+    //transition: background-color .65s ease;
 }
-
+.jscolor {
+    background-color: transparent !important;
+    color: $c-default !important;
+}
 .is-open {
     .fontblock__menu {
         // + 30px is to account for box-shadow!
