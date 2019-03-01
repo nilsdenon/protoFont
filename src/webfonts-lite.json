@@ -1,0 +1,65 @@
+{
+ "kind": "webfonts#webfontList",
+ "items": [
+    {
+    "kind": "webfonts#webfont",
+    "family": "ABeeZee",
+    "category": "sans-serif",
+    "variants": [
+        "regular",
+        "italic"
+    ],
+    "subsets": [
+        "latin"
+    ],
+    "version": "v12",
+    "lastModified": "2019-01-15",
+    "files": {
+        "regular": "http://fonts.gstatic.com/s/abeezee/v12/esDR31xSG-6AGleN6tKukbcHCpE.ttf",
+        "italic": "http://fonts.gstatic.com/s/abeezee/v12/esDT31xSG-6AGleN2tCklZUCGpG-GQ.ttf"
+    }
+    },
+    {
+    "kind": "webfonts#webfont",
+    "family": "Abel",
+    "category": "sans-serif",
+    "variants": [
+        "regular"
+    ],
+    "subsets": [
+        "latin"
+    ],
+    "version": "v9",
+    "lastModified": "2019-02-21",
+    "files": {
+        "regular": "http://fonts.gstatic.com/s/abel/v9/MwQ5bhbm2POE6VhLPJp6qGI.ttf"
+    }
+    },
+    {
+    "kind": "webfonts#webfont",
+    "family": "Abhaya Libre",
+    "category": "serif",
+    "variants": [
+        "regular",
+        "500",
+        "600",
+        "700",
+        "800"
+    ],
+    "subsets": [
+        "latin",
+        "sinhala",
+        "latin-ext"
+    ],
+    "version": "v4",
+    "lastModified": "2019-01-10",
+    "files": {
+        "regular": "http://fonts.gstatic.com/s/abhayalibre/v4/e3tmeuGtX-Co5MNzeAOqinEge0PWovdU4w.ttf",
+        "500": "http://fonts.gstatic.com/s/abhayalibre/v4/e3t5euGtX-Co5MNzeAOqinEYj2ryqtxI6oYtBA.ttf",
+        "600": "http://fonts.gstatic.com/s/abhayalibre/v4/e3t5euGtX-Co5MNzeAOqinEYo23yqtxI6oYtBA.ttf",
+        "700": "http://fonts.gstatic.com/s/abhayalibre/v4/e3t5euGtX-Co5MNzeAOqinEYx2zyqtxI6oYtBA.ttf",
+        "800": "http://fonts.gstatic.com/s/abhayalibre/v4/e3t5euGtX-Co5MNzeAOqinEY22_yqtxI6oYtBA.ttf"
+    }
+    }
+ ]
+}

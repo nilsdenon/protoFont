@@ -1,7 +1,6 @@
-/* Vendors */
-@import "~normalize.css";
+@import '../../node_modules/bootstrap/scss/bootstrap';
 
-@import "base/variables";
-@import "base/elements";
-
-@import "components/font-block.scss";
+@import 'global/variables';
+@import 'global/general';
+@import 'layout/header';
+@import 'components/fontblock';

@@ -1,0 +1,21 @@
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto', sans-serif;
+    color: $c-default;
+    font-size: 16px;
+    overflow-x: hidden;
+    padding-top: $header-spacing;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    //width: 0;
+    //height: 0;
+    //position: absolute;
+    transition: $tr-default;
+}
+.main-container {
+    padding: 2rem 0 5rem;
+}
