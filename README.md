@@ -8,8 +8,11 @@ protoFont is a very simple webApp for testing WebFonts from the Google WebFonts 
 ## Installation
 * Clone Repo and cd in the directory
 
-### Dev Mode
-* $npm install && npm run start or $yarn && yarn start
+## Development
 
-### Build Project
-* $npm run build or $yarn build
+* Run `yarn` or `npm install` to install dependencies
+* Run `yarn start` or `npm run start` to start the development server
+
+## Build Project
+
+* `yarn build` or `npm run build` — Compile and optimize the files in your assets directory
