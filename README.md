@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/nilsdenon/protoFont/master/_screenshots/protoFont-02.png)
+![alt text](https://raw.githubusercontent.com/nilsdenon/protoFont/master/protoFont-screendesign.png)
 
 # protoFont
 protoFont is a very simple webApp for testing WebFonts from the Google WebFonts directory
