@@ -17,4 +17,4 @@ protoFont is a very simple webApp for testing WebFonts from the Google WebFonts 
 
 ## Build Project
 
-* `yarn build` or `npm run build` — Compile and optimize the files in your assets directory
+* `yarn build` or `npm run build` — Compile and optimize the files and create files in "dist" directory
