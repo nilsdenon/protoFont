@@ -1,0 +1,33 @@
+Konzept:
+
+protoFont ist eine ganz einfache WebApp die dazu dient sehr schnell und einfach alle WebFonts aus dem Google WebFonts Repertoire in einer Komposition zu testen.
+
+Ich habe mit WebPack + dev server + Sass + Browersync gearbeitet um auf mehrere Webrowser den Code zu testen (problem mit Ajax auf Chrome damit beseitigt).
+
+Repo für das Projekt hier verfügbar:
+ 
+https://kalumbox@bitbucket.org/kalumbox/protofont.git
+
+
+Was noch verbessert werden kann:
+
+1. anstatt zwei funktionen "prepareFirstSelect()" und "prepareSecondSelect(); nur ein einzige funktion daraus machen. Das hatte ich auch fast hinbekommen, leider gab es noch ein Problem mit dem Aktuell gewählter Index, aus Zeitliche Gründe musste ich das verschieben.
+
+2. Variablen Namen vereinfachen: ich denke da sind zu viele und die Namen verwirren ein wenig (ich wollte aber schell vorankommen), mann kann sicherlich einige Global definieren und für mehrere Funktionen zu verfügung stellen anstatt diese immer innerhalb einer Funktion neu zu definieren.
+
+3. Unnötige Bootstrap Sass partials entferen im Build prozess um eine viel kleinere CSS Datei zu erzeugen oder sogar Bootstrap komplett verarbschieden. (z.B hier wird kein Grid System benötigt) 
+
+Weitere Schritte / TODOs:
+
+1. export zu PDF, mit Hilfe von externe Bibliothek(en):
+    a. jsPDF
+    b. html2Canvas
+    Hier gibt es ein ganz gut geschriebener Artikel auf Medium: https://itnext.io/javascript-convert-html-css-to-pdf-print-supported-very-sharp-and-not-blurry-c5ffe441eb5e 
+   
+   
+2. Ein "reset to default" Button um die Zufallsdaten neuzuladen und von Anfang starten
+
+3. Weitere Textblöcke generieren und speichern
+4. Alle einstellungen in einer JSON Datein abspeichern und laden
+5. Der gesamte Projekt in React.js umschreiben. Die Logik wird trotzdem ähnlich sein nur die UI wird als React Komponente umgebaut.
+6. Das Projekt Responsive Optimieren damit es auf Mobilegeräte trotzdem gut dienbar bleibt.
